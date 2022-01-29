@@ -1,9 +1,16 @@
-from dataclasses import field
-from itertools import product
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import Branch, Product, Restaurant, Cuisine
+from .models import Branch, Product, Restaurant, Cuisine, User, UserProfile
+
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = User
+
+class UserProfileType(DjangoObjectType):
+    class Meta:
+        model = UserProfile
 
 class CuisineType(DjangoObjectType):
     class Meta:
@@ -27,6 +34,8 @@ class Query(graphene.ObjectType):
     all_branchess = graphene.List(BranchType)
     all_products = graphene.List(ProductType)
 
+    user = graphene.Field(UserType, id=graphene.ID())
+    user_profile = graphene.Field(UserProfileType, id=graphene.ID())
     cuisine = graphene.Field(CuisineType, id=graphene.ID())
     restaurant = graphene.Field(RestaurantType, id=graphene.ID())
     branch = graphene.Field(BranchType, id=graphene.ID())
@@ -47,10 +56,10 @@ class Query(graphene.ObjectType):
 
 
     
-    def resolve_cuisine(root, info, id):
-        return Cuisine.objects.get(pk=id)
+    def resolve_user(root, info, id):
+        return User.objects.select_related('userprofile', 'userprofile__restaurant').get(pk=id)
     def resolve_restaurant(root, info, id):
-        return Restaurant.objects.get(pk=id)
+        return Restaurant.objects.prefetch_related('product_set').get(pk=id)
     def resolve_branch(root, info, id):
         return Branch.objects.get(pk=id)
     def resolve_product(root, info, id):
