@@ -1,8 +1,10 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 from django_extensions.db.models import ActivatorModel, TimeStampedModel, TitleSlugDescriptionModel
+from django_countries.fields import CountryField
 
 class User(AbstractUser):
     pass
@@ -19,6 +21,13 @@ class Restaurant(TimeStampedModel, models.Model):
     description = models.TextField()
     phone_number = models.CharField(max_length=20)
     cuisines = models.ManyToManyField(Cuisine)
+    facebook = models.CharField(max_length=50, blank=True, null=True)
+    instagram = models.CharField(max_length=50, blank=True, null=True)
+    twitter = models.CharField(max_length=50, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    creator = models.ForeignKey(User, on_delete=models.PROTECT)
+    origin_country = CountryField(default="BN")
 
     def __str__(self):
         return self.name
@@ -30,9 +39,12 @@ class Branch(TimeStampedModel, models.Model):
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    payment_instruction = models.TextField()
     phone_number = models.CharField(max_length=20)
     address = models.TextField()
-    payment_instruction = models.TextField()
+    country = CountryField(default="BN")
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     
     def __str__(self):
         return self.name
@@ -107,3 +119,33 @@ class OrderProduct(TimeStampedModel, models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
+
+class PaymentGateway(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    merchant_id = models.CharField(max_length=30)
+    api_password = models.CharField(max_length=100)
+
+class Payment(models.Model):
+
+    class Status(models.TextChoices):
+        PENDING_PAYMENT = 'pending-payment', _('Pending Payment')
+        PAYMENT_RECEIVED = 'payment-received', _('Payment Received')
+        ON_HOLD = 'on-hold', _('On Hold')
+        COMPLETED = 'completed', _('Completed')
+        CANCELLED = 'cancelled', _('Cancelled')
+        REFUNDED = 'refunded', _('Refunded')
+        FAILED = 'failed', _('Failed')
+
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.PENDING_PAYMENT
+    )
+    session_id = models.CharField(max_length=100)
+    session_version = models.CharField(max_length=30)
+    success_indicator = models.CharField(max_length=30)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True, blank=True)
+    branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True, blank=True)
+    paid_at = models.DateTimeField(null=True)
+

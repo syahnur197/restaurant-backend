@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Cuisine, Restaurant, Branch, UserProfile, Product, Order, OrderProduct
+from .models import User, Cuisine, Restaurant, Branch, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
 
 
 @admin.register(User)
@@ -131,3 +131,41 @@ class OrderProductAdmin(admin.ModelAdmin):
         'price',
     )
     list_filter = ('created', 'modified', 'order')
+
+
+@admin.register(PaymentGateway)
+class PaymentGatewayAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'restaurant',
+        'branch',
+        'merchant_id',
+        'api_password',
+    )
+    list_filter = ('restaurant', 'branch')
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'created',
+        'modified',
+        'payment_gateway',
+        'restaurant',
+        'branch',
+        'order',
+        'session_id',
+        'session_version',
+        'status',
+        'paid_at',
+    )
+    list_filter = (
+        'created',
+        'modified',
+        'payment_gateway',
+        'restaurant',
+        'branch',
+        'order',
+        'paid_at',
+    )
