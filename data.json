@@ -16,29 +16,5 @@
             "groups": [],
             "user_permissions": []
         }
-    },
-    {
-        "model": "restaurant.restaurant",
-        "pk": 1,
-        "fields": {
-            "name": "Jollibee",
-            "description": "Jollibee brunei"
-        }
-    },
-    {
-        "model": "restaurant.restaurant",
-        "pk": 2,
-        "fields": {
-            "name": "KFC",
-            "description": "KFC Brunei"
-        }
-    },
-    {
-        "model": "restaurant.restaurant",
-        "pk": 3,
-        "fields": {
-            "name": "Ideal",
-            "description": "Ideal brunei"
-        }
     }
 ]

@@ -84,7 +84,7 @@ class Order(TimeStampedModel, models.Model):
         DELIVERED = 'delivered', _('Delivered')
         CANCEL = 'cancel', _('Cancel')
     
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     total_price = models.DecimalField(max_digits=7, decimal_places=2)
     note = models.TextField()
     type = models.CharField(
