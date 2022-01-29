@@ -142,6 +142,7 @@ class Payment(models.Model):
         choices=Status.choices,
         default=Status.PENDING_PAYMENT
     )
+    order = models.ForeignKey(Order, on_delete=models.PROTECT)
     session_id = models.CharField(max_length=100)
     session_version = models.CharField(max_length=30)
     success_indicator = models.CharField(max_length=30)

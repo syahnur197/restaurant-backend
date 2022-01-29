@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 
 from .models import User, Cuisine, Restaurant, Branch, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
@@ -7,7 +8,7 @@ from .models import User, Cuisine, Restaurant, Branch, UserProfile, Product, Ord
 class UserAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        # 'password',
+        'password',
         'last_login',
         'is_superuser',
         'username',
@@ -43,8 +44,15 @@ class RestaurantAdmin(admin.ModelAdmin):
         'name',
         'description',
         'phone_number',
+        'facebook',
+        'instagram',
+        'twitter',
+        'website',
+        'email',
+        'creator',
+        'origin_country',
     )
-    list_filter = ('created', 'modified')
+    list_filter = ('created', 'modified', 'creator')
     raw_id_fields = ('cuisines',)
     search_fields = ('name',)
 
@@ -57,9 +65,12 @@ class BranchAdmin(admin.ModelAdmin):
         'modified',
         'restaurant',
         'name',
+        'payment_instruction',
         'phone_number',
         'address',
-        'payment_instruction',
+        'country',
+        'latitude',
+        'longitude',
     )
     list_filter = ('created', 'modified', 'restaurant')
     search_fields = ('name',)
@@ -149,23 +160,13 @@ class PaymentGatewayAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     list_display = (
         'id',
-        'created',
-        'modified',
-        'payment_gateway',
-        'restaurant',
-        'branch',
+        'status',
         'order',
         'session_id',
         'session_version',
-        'status',
-        'paid_at',
-    )
-    list_filter = (
-        'created',
-        'modified',
-        'payment_gateway',
+        'success_indicator',
         'restaurant',
         'branch',
-        'order',
         'paid_at',
     )
+    list_filter = ('order', 'restaurant', 'branch', 'paid_at')
