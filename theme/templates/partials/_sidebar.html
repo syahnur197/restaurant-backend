@@ -23,6 +23,12 @@
               {{ nav.label }}
             </a>
           {% endfor %}
+          <form method="post" action="{% url 'account_logout' %}"  class="hover:bg-gray-50 group rounded-md py-2 px-2 flex items-center">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-600 hover:text-gray-900 text-base font-medium">
+              Log Out
+            </button>
+          </form>
         </nav>
       </div>
     </div>
@@ -46,6 +52,12 @@
               {{ nav.label }}
             </a>
           {% endfor %}
+          <form method="post" action="{% url 'account_logout' %}"  class="hover:bg-gray-50 group rounded-md py-2 px-2 flex items-center">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-600 hover:text-gray-900 text-sm font-medium">
+              Log Out
+            </button>
+          </form>
         </nav>
       </div>
     </div>

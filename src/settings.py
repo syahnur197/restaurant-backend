@@ -178,3 +178,4 @@ ACCOUNT_MAX_EMAIL_ADDRESSES = 1
 ACCOUNT_PRESERVE_USERNAME_CASING = False
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard:dashboard')
 LOGIN_URL = reverse_lazy('account_login')
+LOGOUT_REDIRECT_URL = LOGIN_URL

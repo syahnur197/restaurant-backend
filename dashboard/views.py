@@ -1,7 +1,7 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
-BASE_DIR = 'dashboard/'
-
+@login_required
 def dashboard(request):
-    return render(request, template_name=BASE_DIR + 'dashboard/index.html')
-
+    return render(request, 'dashboard/dashboard/index.html')
