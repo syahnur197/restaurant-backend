@@ -1,0 +1,13 @@
+{% extends 'dashboard.base.html' %}
+
+{% block content %}
+  <a href="#">Add Product</a>
+  <ul>
+    {% for product in products %}
+      <li>
+        {{ product.name }}
+        {{ product.unit_price }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

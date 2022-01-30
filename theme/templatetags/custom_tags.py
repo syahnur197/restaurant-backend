@@ -13,7 +13,7 @@ def show_sidebar():
     navs = [
         {'label': 'Dashboard', 'link' : reverse_lazy('dashboard:dashboard')},
         {'label': 'Branches', 'link' : reverse_lazy('dashboard:dashboard')},
-        {'label': 'Products', 'link' : reverse_lazy('dashboard:dashboard')},
+        {'label': 'Products', 'link' : reverse_lazy('dashboard:product-list')},
         {'label': 'Orders', 'link' : reverse_lazy('dashboard:dashboard')},
         {'label': 'Setting', 'link' : reverse_lazy('dashboard:dashboard')},
     ]
