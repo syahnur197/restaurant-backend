@@ -18,7 +18,8 @@ from django.urls import path, include
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('graphql', GraphQLView.as_view(graphiql=True)),
-    path('restaurants/', include('restaurant.urls'))
+    path('backend/', admin.site.urls),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
+    path('dashboard/', include('dashboard.urls')),
+    path('__reload__/', include('django_browser_reload.urls')),
 ]
