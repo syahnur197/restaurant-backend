@@ -1,200 +1,265 @@
 [
-    {
-        "model": "restaurant.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$260000$GKPNeOcl3XX8ZFCl3W9qqI$xK702ybExyVJeNuCmzKQVdAJ4Ud3GS62RI55QJWR0SE=",
-            "last_login": "2022-01-29T18:34:29.626Z",
-            "is_superuser": true,
-            "username": "user",
-            "first_name": "",
-            "last_name": "",
-            "email": "user@email.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2022-01-29T13:29:33.837Z",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 1,
-        "fields": {
-            "title": "Fast Food",
-            "description": "",
-            "slug": "fast-food"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 2,
-        "fields": {
-            "title": "Italian",
-            "description": "",
-            "slug": "italian"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 3,
-        "fields": {
-            "title": "Malay",
-            "description": "",
-            "slug": "malay"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 4,
-        "fields": {
-            "title": "Indonesian",
-            "description": "",
-            "slug": "indonesian"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 5,
-        "fields": {
-            "title": "Arab",
-            "description": "",
-            "slug": "arab"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 6,
-        "fields": {
-            "title": "Indian",
-            "description": "",
-            "slug": "indian"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 7,
-        "fields": {
-            "title": "Chinese",
-            "description": "",
-            "slug": "chinese"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 8,
-        "fields": {
-            "title": "Korean",
-            "description": "",
-            "slug": "korean"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 9,
-        "fields": {
-            "title": "Japanese",
-            "description": "",
-            "slug": "japanese"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 10,
-        "fields": {
-            "title": "Hot Pot",
-            "description": "",
-            "slug": "hot-pot"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 11,
-        "fields": {
-            "title": "Thai",
-            "description": "",
-            "slug": "thai"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 12,
-        "fields": {
-            "title": "French",
-            "description": "",
-            "slug": "french"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 13,
-        "fields": {
-            "title": "Greek",
-            "description": "",
-            "slug": "greek"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 14,
-        "fields": {
-            "title": "American",
-            "description": "",
-            "slug": "american"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 15,
-        "fields": {
-            "title": "Breakfast",
-            "description": "",
-            "slug": "breakfast"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 16,
-        "fields": {
-            "title": "Fine Dining",
-            "description": "",
-            "slug": "fine-dining"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 17,
-        "fields": {
-            "title": "Lebanese",
-            "description": "",
-            "slug": "lebanese"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 18,
-        "fields": {
-            "title": "Mediterranean",
-            "description": "",
-            "slug": "mediterranean"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 19,
-        "fields": {
-            "title": "Spanish",
-            "description": "",
-            "slug": "spanish"
-        }
-    },
-    {
-        "model": "restaurant.cuisine",
-        "pk": 20,
-        "fields": {
-            "title": "Turkish",
-            "description": "",
-            "slug": "turkish"
-        }
+  {
+    "model": "restaurant.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$GKPNeOcl3XX8ZFCl3W9qqI$xK702ybExyVJeNuCmzKQVdAJ4Ud3GS62RI55QJWR0SE=",
+      "last_login": "2022-01-30T09:43:01.618Z",
+      "is_superuser": true,
+      "username": "user",
+      "first_name": "",
+      "last_name": "",
+      "email": "user@email.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-01-29T13:29:33.837Z",
+      "groups": [],
+      "user_permissions": []
     }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 1,
+    "fields": {
+      "title": "Fast Food",
+      "description": "",
+      "slug": "fast-food"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 2,
+    "fields": {
+      "title": "Italian",
+      "description": "",
+      "slug": "italian"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 3,
+    "fields": {
+      "title": "Malay",
+      "description": "",
+      "slug": "malay"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 4,
+    "fields": {
+      "title": "Indonesian",
+      "description": "",
+      "slug": "indonesian"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 5,
+    "fields": {
+      "title": "Arab",
+      "description": "",
+      "slug": "arab"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 6,
+    "fields": {
+      "title": "Indian",
+      "description": "",
+      "slug": "indian"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 7,
+    "fields": {
+      "title": "Chinese",
+      "description": "",
+      "slug": "chinese"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 8,
+    "fields": {
+      "title": "Korean",
+      "description": "",
+      "slug": "korean"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 9,
+    "fields": {
+      "title": "Japanese",
+      "description": "",
+      "slug": "japanese"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 10,
+    "fields": {
+      "title": "Hot Pot",
+      "description": "",
+      "slug": "hot-pot"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 11,
+    "fields": {
+      "title": "Thai",
+      "description": "",
+      "slug": "thai"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 12,
+    "fields": {
+      "title": "French",
+      "description": "",
+      "slug": "french"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 13,
+    "fields": {
+      "title": "Greek",
+      "description": "",
+      "slug": "greek"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 14,
+    "fields": {
+      "title": "American",
+      "description": "",
+      "slug": "american"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 15,
+    "fields": {
+      "title": "Breakfast",
+      "description": "",
+      "slug": "breakfast"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 16,
+    "fields": {
+      "title": "Fine Dining",
+      "description": "",
+      "slug": "fine-dining"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 17,
+    "fields": {
+      "title": "Lebanese",
+      "description": "",
+      "slug": "lebanese"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 18,
+    "fields": {
+      "title": "Mediterranean",
+      "description": "",
+      "slug": "mediterranean"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 19,
+    "fields": {
+      "title": "Spanish",
+      "description": "",
+      "slug": "spanish"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 20,
+    "fields": {
+      "title": "Turkish",
+      "description": "",
+      "slug": "turkish"
+    }
+  },
+  {
+    "model": "restaurant.restaurant",
+    "pk": 1,
+    "fields": {
+      "created": "2022-01-30T10:08:46.226Z",
+      "modified": "2022-01-30T10:08:46.226Z",
+      "name": "Jollibee",
+      "description": "Jollibee",
+      "phone_number": "8885555",
+      "facebook": null,
+      "instagram": null,
+      "twitter": null,
+      "website": null,
+      "email": null,
+      "creator": 1,
+      "origin_country": "BN",
+      "cuisines": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "restaurant.userprofile",
+    "pk": 1,
+    "fields": {
+      "created": "2022-01-30T10:05:07.422Z",
+      "modified": "2022-01-30T10:08:54.554Z",
+      "user": 1,
+      "restaurant": 1,
+      "branch": null,
+      "full_name": "User User",
+      "role": "restaurant-admin"
+    }
+  },
+  {
+    "model": "restaurant.product",
+    "pk": 1,
+    "fields": {
+      "created": "2022-01-30T10:09:35.305Z",
+      "modified": "2022-01-30T10:09:35.305Z",
+      "status": 1,
+      "activate_date": "2022-01-30T10:09:35.305Z",
+      "deactivate_date": null,
+      "name": "Jolly Spaghetti",
+      "description": "Jolly Spaghetti",
+      "restaurant": 1,
+      "unit_price": "10.00"
+    }
+  },
+  {
+    "model": "restaurant.product",
+    "pk": 2,
+    "fields": {
+      "created": "2022-01-30T10:12:43.927Z",
+      "modified": "2022-01-30T10:12:43.927Z",
+      "status": 1,
+      "activate_date": "2022-01-30T10:12:43.926Z",
+      "deactivate_date": null,
+      "name": "Gravy",
+      "description": "Gravy",
+      "restaurant": 1,
+      "unit_price": "0.20"
+    }
+  }
 ]
