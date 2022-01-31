@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from authentication.mixins import HasRestaurantMixin
+from dashboard.mixins import HasRestaurantMixin
 from restaurant.models import Branch, Product, Restaurant
 
 
@@ -17,6 +17,11 @@ class ProductListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
     def get_queryset(self):
         user_restaurant = self.request.user.getUserRestaurant()
         return Product.objects.filter(restaurant=user_restaurant)
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = "dashboard/product/product-create.html"
 
 
 class BranchListView(LoginRequiredMixin, HasRestaurantMixin, ListView):

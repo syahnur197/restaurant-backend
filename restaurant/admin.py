@@ -85,7 +85,6 @@ class UserProfileAdmin(admin.ModelAdmin):
         'user',
         'restaurant',
         'branch',
-        'full_name',
         'role',
     )
     list_filter = ('created', 'modified', 'user', 'restaurant', 'branch')

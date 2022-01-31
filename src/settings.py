@@ -108,8 +108,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_FORMS = {'signup': 'authentication.forms.CustomSignupForm'}
-
 SITE_ID = 1
 
 WSGI_APPLICATION = 'src.wsgi.application'

@@ -75,7 +75,6 @@ class UserProfile(TimeStampedModel, models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True, blank=True) # set null if restaurant is deleted
     branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True, blank=True) # set null if branch is deleted
-    full_name = models.CharField(max_length=100)
     role = models.CharField(
         max_length=50,
         choices=Role.choices,
