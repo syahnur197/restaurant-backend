@@ -1,4 +1,9 @@
-from allauth.account.forms import LoginForm
+from django import forms
+from django.utils.translation import gettext_lazy as _
+
+from allauth.account.forms import LoginForm, SignupForm
+
+from restaurant.models import UserProfile
 
 class CustomLoginForm(LoginForm):
 
@@ -8,3 +13,24 @@ class CustomLoginForm(LoginForm):
 
         # You must return the original result.
         return super(CustomLoginForm, self).login(*args, **kwargs)
+
+class CustomSignupForm(SignupForm):
+    full_name = forms.CharField(
+        label=_("Full Name"),
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={"placeholder": _("Full Name"), "autocomplete": "fullname"}
+        ),
+    )
+
+    def save(self, request):
+
+        # Ensure you call the parent class's save.
+        # .save() returns a User object.
+        user = super(CustomSignupForm, self).save(request)
+
+        full_name = self.cleaned_data.get('full_name')
+        UserProfile.objects.create(full_name=full_name, user=user)
+
+        # You must return the original result.
+        return user

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'restaurant',
     'dashboard',
+    'authentication',
 
     'graphene_django',
     'rest_framework',
@@ -69,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'authentication.middleware.CompleteRegistrationMiddleware',
 ]
 
 GRAPHENE = {
@@ -106,6 +108,8 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+ACCOUNT_FORMS = {'signup': 'authentication.forms.CustomSignupForm'}
 
 SITE_ID = 1
 

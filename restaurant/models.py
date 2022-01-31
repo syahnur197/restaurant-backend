@@ -6,6 +6,14 @@ from django_extensions.db.models import ActivatorModel, TimeStampedModel, TitleS
 from django_countries.fields import CountryField
 
 class User(AbstractUser):
+
+    def has_user_profile(self):
+        return hasattr(self, 'user_profile')
+
+    def has_restaurant(self):
+        user_profile = self.user_profile
+        return hasattr(user_profile, 'restaurant') and user_profile.restaurant is not None
+
     def getUserProfile(self):
         return self.user_profile
 
