@@ -5,11 +5,11 @@ services:
   db:
     image: postgres
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
+      POSTGRES_DB: restaurant
       POSTGRES_USER: restaurant
       POSTGRES_PASSWORD: secret
-      POSTGRES_DB: restaurant
 
   adminer:
     image: adminer
