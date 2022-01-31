@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from django_extensions.db.models import ActivatorModel, TimeStampedModel, TitleSlugDescriptionModel
@@ -14,14 +15,14 @@ class User(AbstractUser):
         user_profile = self.user_profile
         return hasattr(user_profile, 'restaurant') and user_profile.restaurant is not None
 
-    def getUserProfile(self):
+    def get_user_profile(self):
         return self.user_profile
 
-    def getUserRestaurant(self):
-        return self.getUserProfile().restaurant
+    def get_user_restaurant(self):
+        return self.get_user_profile().restaurant
 
     def getRestaurantProducts(self):
-        return self.getUserRestaurant().products
+        return self.get_user_restaurant().products
 
 class Cuisine(TitleSlugDescriptionModel):
     class Meta:
@@ -81,7 +82,7 @@ class UserProfile(TimeStampedModel, models.Model):
         default=Role.RESTAURANT_ADMIN
     )
 
-    def setRestaurant(self, restaurant):
+    def set_restaurant(self, restaurant):
         self.restaurant = restaurant
         return self.save()
 
@@ -90,6 +91,9 @@ class Product(TimeStampedModel, ActivatorModel, models.Model):
     description = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
+
+    def get_edit_link(self):
+        return reverse_lazy('dashboard_product_create')
 
 class Order(TimeStampedModel, models.Model):
 

@@ -12,11 +12,42 @@ class DashboardView(LoginRequiredMixin, HasRestaurantMixin, TemplateView):
 
 class ProductListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
     template_name = "dashboard/product/product-list.html"
-    context_object_name = "products"
+    context_object_name = "records"
 
     def get_queryset(self):
-        user_restaurant = self.request.user.getUserRestaurant()
+        user_restaurant = self.request.user.get_user_restaurant()
         return Product.objects.filter(restaurant=user_restaurant)
+
+    def get_context_data(self,**kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        context['headers'] = [
+            {
+                'key': 'number',
+                'label' : 'Number',
+                'link' : '',
+            },
+            {
+                'key': 'name',
+                'label' : 'Product Name',
+                'link' : 'edit_link',
+            },
+            {
+                'key': 'description',
+                'label' : 'Description',
+                'link' : '',
+            },
+            {
+                'key': 'status',
+                'label' : 'Status',
+                'link' : '',
+            },
+            {
+                'key': 'edit',
+                'label' : '',
+                'link' : 'edit_link',
+            },
+        ]
+        return context
 
 
 class ProductCreateView(LoginRequiredMixin, HasRestaurantMixin, CreateView):

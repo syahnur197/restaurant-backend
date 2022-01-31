@@ -19,3 +19,14 @@ def show_sidebar():
     ]
 
     return {'navs' : navs}
+
+@register.inclusion_tag('partials/_table.html')
+def render_table(headers, records):
+    return {
+        'headers' : headers,
+        'records' : records,
+    }
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.__dict__.get(key)

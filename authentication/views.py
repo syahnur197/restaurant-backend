@@ -18,6 +18,6 @@ class SetUpRestaurantView(CreateView):
 
         # assigning the restaurant to the user's profile
         restaurant = self.object
-        self.request.user.user_profile.setRestaurant(restaurant)
+        self.request.user.user_profile.set_restaurant(restaurant)
 
         return response

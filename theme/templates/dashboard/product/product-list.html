@@ -1,13 +1,20 @@
 {% extends 'dashboard.base.html' %}
+{% load custom_tags %}
+
+{% block header %}
+Products
+{% endblock %}
 
 {% block content %}
-  <a href="{% url 'dashboard_product_create' %}">Add Product</a>
-  <ul>
-    {% for product in products %}
-      <li>
-        {{ product.name }}
-        {{ product.unit_price }}
-      </li>
-    {% endfor %}
-  </ul>
+<div class="text-right"><a href="{% url 'dashboard_product_create' %}" class="bg-blue-300 py-2 px-4">Add Product</a></div>
+<ul>
+  {% for product in products %}
+    <li>
+      {{ product.name }}
+      {{ product.unit_price }}
+    </li>
+  {% endfor %}
+</ul>
+{% render_table headers records %}
 {% endblock content %}
+
