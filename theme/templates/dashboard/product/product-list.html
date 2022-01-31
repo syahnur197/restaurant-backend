@@ -1,7 +1,7 @@
 {% extends 'dashboard.base.html' %}
 
 {% block content %}
-  <a href="#">Add Product</a>
+  <a href="{% url 'dashboard_product_create' %}">Add Product</a>
   <ul>
     {% for product in products %}
       <li>

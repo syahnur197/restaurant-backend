@@ -9,7 +9,7 @@ class SetUpRestaurantView(CreateView):
     """
     template_name = 'account/restaurant.html'
     form_class = SetupRestaurantForm
-    success_url = reverse_lazy('dashboard:dashboard')
+    success_url = reverse_lazy('dashboard_dashboard')
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
