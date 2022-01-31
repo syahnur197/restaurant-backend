@@ -82,6 +82,10 @@ class UserProfile(TimeStampedModel, models.Model):
         default=Role.RESTAURANT_ADMIN
     )
 
+    def setRestaurant(self, restaurant):
+        self.restaurant = restaurant
+        return self.save()
+
 class Product(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()

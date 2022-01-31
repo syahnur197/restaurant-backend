@@ -1,9 +1,9 @@
-from django import forms
+from django.forms import CharField, TextInput, ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from allauth.account.forms import LoginForm, SignupForm
 
-from restaurant.models import UserProfile
+from restaurant.models import Restaurant, UserProfile
 
 class CustomLoginForm(LoginForm):
 
@@ -15,10 +15,10 @@ class CustomLoginForm(LoginForm):
         return super(CustomLoginForm, self).login(*args, **kwargs)
 
 class CustomSignupForm(SignupForm):
-    full_name = forms.CharField(
+    full_name = CharField(
         label=_("Full Name"),
         max_length=100,
-        widget=forms.TextInput(
+        widget=TextInput(
             attrs={"placeholder": _("Full Name"), "autocomplete": "fullname"}
         ),
     )
@@ -34,3 +34,8 @@ class CustomSignupForm(SignupForm):
 
         # You must return the original result.
         return user
+
+class SetupRestaurantForm(ModelForm):
+    class Meta:
+        model = Restaurant
+        exclude = ('creator',)
