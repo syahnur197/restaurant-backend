@@ -80,7 +80,7 @@ class Branch(TimeStampedModel, models.Model):
 
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    payment_instruction = models.TextField()
+    payment_instruction = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=20)
     address = models.TextField()
     country = CountryField(default="BN")

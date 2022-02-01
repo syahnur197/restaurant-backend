@@ -21,6 +21,4 @@ class SetUpBranchForm(ModelForm):
             'address',
             'phone_number',
             'country',
-            'latitude',
-            'longitude',
         )

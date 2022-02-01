@@ -1,0 +1,42 @@
+[
+  {
+    "model": "subscriptions.package",
+    "pk": 1,
+    "fields": {
+      "title": "Free",
+      "description": "Free",
+      "slug": "free",
+      "price": "0.00"
+    }
+  },
+  {
+    "model": "subscriptions.package",
+    "pk": 2,
+    "fields": {
+      "title": "Bronze",
+      "description": "Bronze",
+      "slug": "bronze",
+      "price": "10.00"
+    }
+  },
+  {
+    "model": "subscriptions.package",
+    "pk": 3,
+    "fields": {
+      "title": "Silver",
+      "description": "Silver",
+      "slug": "silver",
+      "price": "20.00"
+    }
+  },
+  {
+    "model": "subscriptions.package",
+    "pk": 4,
+    "fields": {
+      "title": "Gold",
+      "description": "Gold",
+      "slug": "gold",
+      "price": "30.00"
+    }
+  }
+]
