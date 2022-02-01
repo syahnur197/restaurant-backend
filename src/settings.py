@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'restaurant',
     'dashboard',
     'authentication',
+    'subscriptions',
 
     'graphene_django',
     'rest_framework',

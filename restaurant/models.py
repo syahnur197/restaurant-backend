@@ -6,6 +6,31 @@ from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import ActivatorModel, TimeStampedModel, TitleSlugDescriptionModel
 from django_countries.fields import CountryField
 
+class ApprovableModel(models.Model):
+    """
+    ApprovabledModel
+
+    An abstract base class model that provides the ability for admin to approve or reject the record
+    """
+
+    STATUS_PENDING = 'pending'
+    STATUS_APPROVED = 'approved'
+    STATUS_REJECTED = 'rejected'
+
+    approved_at = models.DateTimeField('Approved At', blank=True, null=True)
+    rejected_at = models.DateTimeField('Rejected At', blank=True, null=True)
+
+    def get_approval_status(self):
+        if self.approved_at is None and self.rejected_at is None:
+            return self.STATUS_PENDING
+        elif self.rejected_at is not None:
+            return self.STATUS_REJECTED
+        elif self.approved_at is not None:
+            return self.STATUS_APPROVED
+
+    class Meta:
+        abstract = True
+
 class User(AbstractUser):
 
     def has_user_profile(self):
@@ -32,7 +57,7 @@ class Cuisine(TitleSlugDescriptionModel):
     def __str__(self):
         return self.title
 
-class Restaurant(TimeStampedModel, ActivatorModel, models.Model):
+class Restaurant(TimeStampedModel, ActivatorModel, ApprovableModel, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     phone_number = models.CharField(max_length=20)
@@ -68,6 +93,7 @@ class Branch(TimeStampedModel, models.Model):
 class UserProfile(TimeStampedModel, models.Model):
 
     class Role(models.TextChoices):
+        ACCOUNT_OWNER = 'account-owner', _('Account Owner')
         RESTAURANT_ADMIN = 'restaurant-admin', _('Restaurant Admin')
         RESTAURANT_MANAGER = 'restaurant-manager', _('Restaurant Manager')
         RESTAURANT_FINANCE = 'restaurant-finance', _('Restaurant Finance')
@@ -80,7 +106,7 @@ class UserProfile(TimeStampedModel, models.Model):
     role = models.CharField(
         max_length=50,
         choices=Role.choices,
-        default=Role.RESTAURANT_ADMIN
+        default=Role.ACCOUNT_OWNER
     )
 
     def set_restaurant(self, restaurant):
