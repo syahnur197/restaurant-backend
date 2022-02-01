@@ -1,8 +1,26 @@
 from django.forms import ModelForm
 
-from restaurant.models import Restaurant
+from restaurant.models import Branch, Restaurant
 
-class SetupRestaurantForm(ModelForm):
+class SetUpRestaurantForm(ModelForm):
     class Meta:
         model = Restaurant
-        exclude = ('status', 'activate_date', 'deactivate_date', 'creator', 'approved_at', 'rejected_at',)
+        fields = (
+            'name',
+            'description',
+            'phone_number',
+            'cuisines',
+            'origin_country',
+        )
+
+class SetUpBranchForm(ModelForm):
+    class Meta:
+        model = Branch
+        fields = (
+            'name',
+            'address',
+            'phone_number',
+            'country',
+            'latitude',
+            'longitude',
+        )

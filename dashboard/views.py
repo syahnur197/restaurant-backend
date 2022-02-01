@@ -5,16 +5,19 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from dashboard.mixins import HasRestaurantMixin
+from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
 from restaurant.models import Branch, Product
 from django_extensions.db.models import ActivatorModel
 from django.forms.utils import ErrorList
 
+class MasterMixin(LoginRequiredMixin, HasRestaurantMixin, UserRestaurantHasBranchMixin):
+    pass
 
-class DashboardView(LoginRequiredMixin, HasRestaurantMixin, TemplateView):
+
+class DashboardView(MasterMixin, TemplateView):
     template_name = 'dashboard/dashboard/index.html'
 
-class ProductListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
+class ProductListView(MasterMixin, ListView):
     template_name = "dashboard/product/product-list.html"
     context_object_name = "records"
 
@@ -54,7 +57,7 @@ class ProductListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
         return context
 
 
-class ProductCreateView(LoginRequiredMixin, HasRestaurantMixin, CreateView):
+class ProductCreateView(MasterMixin, CreateView):
     model = Product
     template_name = "dashboard/product/product-create.html"
     fields = ('name', 'description', 'unit_price', 'status',)
@@ -73,7 +76,7 @@ class ProductCreateView(LoginRequiredMixin, HasRestaurantMixin, CreateView):
         return super(ProductCreateView, self).form_valid(form)
 
 
-class BranchListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
+class BranchListView(MasterMixin, ListView):
     model = Branch
     template_name = "dashboard/branch/branch-list.html"
     context_object_name = "branches"

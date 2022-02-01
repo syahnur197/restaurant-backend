@@ -1,14 +1,14 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from authentication.forms import SetupRestaurantForm
+from authentication.forms import SetUpBranchForm, SetUpRestaurantForm
 
 class SetUpRestaurantView(CreateView):
     """
     View to set up restaurant after sign up
     """
     template_name = 'account/restaurant.html'
-    form_class = SetupRestaurantForm
+    form_class = SetUpRestaurantForm
     success_url = reverse_lazy('dashboard_dashboard')
 
     def get(self, request, *args, **kwargs):
@@ -27,3 +27,21 @@ class SetUpRestaurantView(CreateView):
         self.request.user.user_profile.set_restaurant(restaurant)
 
         return response
+
+
+class SetUpBranchView(CreateView):
+    """
+    View to set up restaurant after sign up
+    """
+    template_name = 'account/branch.html'
+    form_class = SetUpBranchForm
+    success_url = reverse_lazy('dashboard_dashboard')
+
+    def get_initial(self):
+        """Return the initial data to use for forms on this view."""
+        restaurant = self.request.user.user_profile.restaurant
+
+        return {
+            'country' : restaurant.origin_country,
+            'phone_number' : restaurant.phone_number,
+        }
