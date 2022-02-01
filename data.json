@@ -228,7 +228,6 @@
       "user": 1,
       "restaurant": 1,
       "branch": null,
-      "full_name": "User User",
       "role": "restaurant-admin"
     }
   },

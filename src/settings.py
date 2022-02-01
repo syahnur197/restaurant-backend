@@ -58,6 +58,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +80,10 @@ GRAPHENE = {
 }
 
 TAILWIND_APP_NAME = 'theme'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -116,19 +123,25 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DB_CONNECTION_TYPE = os.getenv('DB_CONNECTION', 'sqlite')
+
+DB_CONNECTIONS = {
+    'sqlite' : {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'pgsql' : {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_DATABASE'),
+        'USER': os.environ.get('DB_USERNAME'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'restaurant',
-    #     'USER': 'restaurant',
-    #     'PASSWORD': 'secret',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': 5432,
-    # }
+}
+
+DATABASES = {
+    'default' : DB_CONNECTIONS[DB_CONNECTION_TYPE]
 }
 
 # Password validation

@@ -5,4 +5,4 @@ from restaurant.models import Restaurant
 class SetupRestaurantForm(ModelForm):
     class Meta:
         model = Restaurant
-        exclude = ('creator',)
+        exclude = ('status', 'activate_date', 'deactivate_date', 'creator',)

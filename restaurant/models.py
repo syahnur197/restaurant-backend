@@ -13,7 +13,7 @@ class User(AbstractUser):
 
     def has_restaurant(self):
         user_profile = self.user_profile
-        return hasattr(user_profile, 'restaurant') and user_profile.restaurant is not None
+        return user_profile.restaurant is not None
 
     def get_user_profile(self):
         return self.user_profile
@@ -21,8 +21,9 @@ class User(AbstractUser):
     def get_user_restaurant(self):
         return self.get_user_profile().restaurant
 
-    def getRestaurantProducts(self):
-        return self.get_user_restaurant().products
+    def get_user_branch(self):
+        return self.get_user_profile().branch
+
 
 class Cuisine(TitleSlugDescriptionModel):
     class Meta:
@@ -31,7 +32,7 @@ class Cuisine(TitleSlugDescriptionModel):
     def __str__(self):
         return self.title
 
-class Restaurant(TimeStampedModel, models.Model):
+class Restaurant(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     phone_number = models.CharField(max_length=20)
