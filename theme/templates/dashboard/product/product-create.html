@@ -5,11 +5,11 @@ Create Product
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+  <form method="post" class="flex flex-col space-y-4" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">
-      Create
+    {{ form }}
+    <button type="submit" class="bg-blue-200 w-1/4 mx-auto py-4 rounded-md">
+      Add
     </button>
   </form>
 {% endblock content %}

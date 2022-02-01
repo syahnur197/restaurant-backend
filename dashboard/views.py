@@ -1,3 +1,5 @@
+from email.policy import default
+from django import forms
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
@@ -5,6 +7,8 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from dashboard.mixins import HasRestaurantMixin
 from restaurant.models import Branch, Product
+from django_extensions.db.models import ActivatorModel
+from django.forms.utils import ErrorList
 
 
 class DashboardView(LoginRequiredMixin, HasRestaurantMixin, TemplateView):
@@ -53,8 +57,16 @@ class ProductListView(LoginRequiredMixin, HasRestaurantMixin, ListView):
 class ProductCreateView(LoginRequiredMixin, HasRestaurantMixin, CreateView):
     model = Product
     template_name = "dashboard/product/product-create.html"
-    fields = ('status', 'name', 'description', 'unit_price',)
+    fields = ('name', 'description', 'unit_price', 'status',)
     success_url = reverse_lazy('dashboard_product_list')
+
+    def get_form(self, form_class=None):
+        form = super(ProductCreateView, self).get_form(form_class)
+        form.fields['name'].widget = forms.TextInput(attrs={'class': 'block py-4 w-full rounded-md'})
+        form.fields['description'].widget = forms.Textarea(attrs={'class': 'block py-4 w-full rounded-md'})
+        form.fields['unit_price'].widget = forms.NumberInput(attrs={'class': 'block py-4 w-full rounded-md'})
+        form.fields['status'].widget = forms.RadioSelect(choices=ActivatorModel.STATUS_CHOICES)
+        return form
 
     def form_valid(self, form):
         form.instance.restaurant = self.request.user.user_profile.restaurant
