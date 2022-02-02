@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$260000$GKPNeOcl3XX8ZFCl3W9qqI$xK702ybExyVJeNuCmzKQVdAJ4Ud3GS62RI55QJWR0SE=",
-      "last_login": "2022-01-30T09:43:01.618Z",
+      "last_login": "2022-02-02T01:52:43.044Z",
       "is_superuser": true,
       "username": "user",
       "first_name": "",
@@ -13,6 +13,24 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2022-01-29T13:29:33.837Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "restaurant.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$L5cchLfJ7h8yPAKm1qLjzr$yf5jIATflvm9bPts6/dRJKizuB5JTGui1Fxf38LyHLI=",
+      "last_login": "2022-02-02T01:54:19.873Z",
+      "is_superuser": false,
+      "username": "owner",
+      "first_name": "",
+      "last_name": "",
+      "email": "owner@email.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-02-02T01:54:18.769Z",
       "groups": [],
       "user_permissions": []
     }
@@ -199,24 +217,45 @@
   },
   {
     "model": "restaurant.restaurant",
-    "pk": 1,
+    "pk": 2,
     "fields": {
-      "created": "2022-01-30T10:08:46.226Z",
-      "modified": "2022-01-30T10:08:46.226Z",
-      "name": "Jollibee",
-      "description": "Jollibee",
+      "created": "2022-02-02T01:54:32.898Z",
+      "modified": "2022-02-02T01:54:32.898Z",
+      "status": 1,
+      "activate_date": "2022-02-02T01:54:32.898Z",
+      "deactivate_date": null,
+      "approved_at": null,
+      "rejected_at": null,
+      "name": "Owner Restaurant",
+      "description": "Owner",
       "phone_number": "8885555",
       "facebook": null,
       "instagram": null,
       "twitter": null,
       "website": null,
       "email": null,
-      "creator": 1,
+      "creator": 2,
       "origin_country": "BN",
       "cuisines": [
-        1,
-        2
+        14,
+        5
       ]
+    }
+  },
+  {
+    "model": "restaurant.branch",
+    "pk": 1,
+    "fields": {
+      "created": "2022-02-02T01:54:40.049Z",
+      "modified": "2022-02-02T01:54:40.049Z",
+      "restaurant": 2,
+      "name": "Kiarong",
+      "payment_instruction": null,
+      "phone_number": "8885555",
+      "address": "Kiarong",
+      "country": "BN",
+      "latitude": null,
+      "longitude": null
     }
   },
   {
@@ -226,39 +265,21 @@
       "created": "2022-01-30T10:05:07.422Z",
       "modified": "2022-01-30T10:08:54.554Z",
       "user": 1,
-      "restaurant": 1,
+      "restaurant": null,
       "branch": null,
       "role": "restaurant-admin"
     }
   },
   {
-    "model": "restaurant.product",
-    "pk": 1,
-    "fields": {
-      "created": "2022-01-30T10:09:35.305Z",
-      "modified": "2022-01-30T10:09:35.305Z",
-      "status": 1,
-      "activate_date": "2022-01-30T10:09:35.305Z",
-      "deactivate_date": null,
-      "name": "Jolly Spaghetti",
-      "description": "Jolly Spaghetti",
-      "restaurant": 1,
-      "unit_price": "10.00"
-    }
-  },
-  {
-    "model": "restaurant.product",
+    "model": "restaurant.userprofile",
     "pk": 2,
     "fields": {
-      "created": "2022-01-30T10:12:43.927Z",
-      "modified": "2022-01-30T10:12:43.927Z",
-      "status": 1,
-      "activate_date": "2022-01-30T10:12:43.926Z",
-      "deactivate_date": null,
-      "name": "Gravy",
-      "description": "Gravy",
-      "restaurant": 1,
-      "unit_price": "0.20"
+      "created": "2022-02-02T01:54:18.911Z",
+      "modified": "2022-02-02T01:54:32.916Z",
+      "user": 2,
+      "restaurant": 2,
+      "branch": null,
+      "role": "account-owner"
     }
   }
 ]

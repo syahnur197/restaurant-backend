@@ -1,0 +1,110 @@
+[
+  {
+    "model": "restaurant.cuisine",
+    "pk": 1,
+    "fields": { "title": "Fast Food", "description": "", "slug": "fast-food" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 2,
+    "fields": { "title": "Italian", "description": "", "slug": "italian" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 3,
+    "fields": { "title": "Malay", "description": "", "slug": "malay" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 4,
+    "fields": { "title": "Indonesian", "description": "", "slug": "indonesian" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 5,
+    "fields": { "title": "Arab", "description": "", "slug": "arab" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 6,
+    "fields": { "title": "Indian", "description": "", "slug": "indian" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 7,
+    "fields": { "title": "Chinese", "description": "", "slug": "chinese" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 8,
+    "fields": { "title": "Korean", "description": "", "slug": "korean" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 9,
+    "fields": { "title": "Japanese", "description": "", "slug": "japanese" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 10,
+    "fields": { "title": "Hot Pot", "description": "", "slug": "hot-pot" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 11,
+    "fields": { "title": "Thai", "description": "", "slug": "thai" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 12,
+    "fields": { "title": "French", "description": "", "slug": "french" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 13,
+    "fields": { "title": "Greek", "description": "", "slug": "greek" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 14,
+    "fields": { "title": "American", "description": "", "slug": "american" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 15,
+    "fields": { "title": "Breakfast", "description": "", "slug": "breakfast" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 16,
+    "fields": {
+      "title": "Fine Dining",
+      "description": "",
+      "slug": "fine-dining"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 17,
+    "fields": { "title": "Lebanese", "description": "", "slug": "lebanese" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 18,
+    "fields": {
+      "title": "Mediterranean",
+      "description": "",
+      "slug": "mediterranean"
+    }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 19,
+    "fields": { "title": "Spanish", "description": "", "slug": "spanish" }
+  },
+  {
+    "model": "restaurant.cuisine",
+    "pk": 20,
+    "fields": { "title": "Turkish", "description": "", "slug": "turkish" }
+  }
+]
