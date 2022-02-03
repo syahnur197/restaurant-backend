@@ -12,7 +12,11 @@
   </head>
 
   <body class="h-full">
-    {% block content %}
-    {% endblock %}
+    <div class="flex h-screen">
+      <div class="w-1/2 m-auto">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
   </body>
 </html>

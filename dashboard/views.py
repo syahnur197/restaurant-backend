@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from dashboard.headers import get_branch_list_headers, get_product_list_headers
 from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
 from restaurant.models import Branch, Product
 from django_extensions.db.models import ActivatorModel
@@ -27,33 +28,7 @@ class ProductListView(MasterMixin, ListView):
 
     def get_context_data(self,**kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
-        context['headers'] = [
-            {
-                'key': 'number',
-                'label' : 'Number',
-                'link' : '',
-            },
-            {
-                'key': 'name',
-                'label' : 'Product Name',
-                'link' : 'edit_link',
-            },
-            {
-                'key': 'description',
-                'label' : 'Description',
-                'link' : '',
-            },
-            {
-                'key': 'status',
-                'label' : 'Status',
-                'link' : '',
-            },
-            {
-                'key': 'edit',
-                'label' : '',
-                'link' : 'edit_link',
-            },
-        ]
+        context['headers'] = get_product_list_headers()
         return context
 
 
@@ -63,14 +38,6 @@ class ProductCreateView(MasterMixin, CreateView):
     fields = ('name', 'description', 'unit_price', 'status',)
     success_url = reverse_lazy('dashboard_product_list')
 
-    def get_form(self, form_class=None):
-        form = super(ProductCreateView, self).get_form(form_class)
-        form.fields['name'].widget = forms.TextInput(attrs={'class': 'block py-4 w-full rounded-md'})
-        form.fields['description'].widget = forms.Textarea(attrs={'class': 'block py-4 w-full rounded-md'})
-        form.fields['unit_price'].widget = forms.NumberInput(attrs={'class': 'block py-4 w-full rounded-md'})
-        form.fields['status'].widget = forms.RadioSelect(choices=ActivatorModel.STATUS_CHOICES)
-        return form
-
     def form_valid(self, form):
         form.instance.restaurant = self.request.user.user_profile.restaurant
         return super(ProductCreateView, self).form_valid(form)
@@ -79,4 +46,13 @@ class ProductCreateView(MasterMixin, CreateView):
 class BranchListView(MasterMixin, ListView):
     model = Branch
     template_name = "dashboard/branch/branch-list.html"
-    context_object_name = "branches"
+    context_object_name = "records"
+
+    def get_queryset(self):
+        user_restaurant = self.request.user.get_user_restaurant()
+        return Branch.objects.filter(restaurant=user_restaurant)
+
+    def get_context_data(self,**kwargs):
+        context = super(BranchListView, self).get_context_data(**kwargs)
+        context['headers'] = get_branch_list_headers()
+        return context

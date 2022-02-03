@@ -90,6 +90,10 @@ class Branch(TimeStampedModel, models.Model):
     def __str__(self):
         return self.name
 
+    def get_edit_link(self):
+        # TODO: Change the url
+        return reverse_lazy('dashboard_product_create')
+
 class UserProfile(TimeStampedModel, models.Model):
 
     class Role(models.TextChoices):
@@ -120,6 +124,7 @@ class Product(TimeStampedModel, ActivatorModel, models.Model):
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
 
     def get_edit_link(self):
+        # TODO: Change the url
         return reverse_lazy('dashboard_product_create')
 
 class Order(TimeStampedModel, models.Model):

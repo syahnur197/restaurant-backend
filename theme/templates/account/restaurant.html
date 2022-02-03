@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
   <h1>Restaurant</h1>
-  <form method="post">{% csrf_token %}
-    {{ form.as_p }}
+  <form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
     <input type="submit" value="Save">
-</form>
+  </form>
 {% endblock content %}

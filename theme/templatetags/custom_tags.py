@@ -12,7 +12,7 @@ def current_time(format_string):
 def show_sidebar():
     navs = [
         {'label': 'Dashboard', 'link' : reverse_lazy('dashboard_dashboard')},
-        {'label': 'Branches', 'link' : reverse_lazy('dashboard_dashboard')},
+        {'label': 'Branches', 'link' : reverse_lazy('dashboard_branch_list')},
         {'label': 'Products', 'link' : reverse_lazy('dashboard_product_list')},
         {'label': 'Orders', 'link' : reverse_lazy('dashboard_dashboard')},
         {'label': 'Setting', 'link' : reverse_lazy('dashboard_dashboard')},
