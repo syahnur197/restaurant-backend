@@ -16,12 +16,12 @@ class SetUpRestaurantView(LoginRequiredMixin, CreateView):
         if request.user.has_restaurant():
             return redirect(self.success_url)
 
-        return super(SetUpRestaurantView, self).get(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
 
-        response = super(SetUpRestaurantView, self).form_valid(form)
+        response = super().form_valid(form)
 
         # assigning the restaurant to the user's profile
         restaurant = self.object
@@ -51,5 +51,5 @@ class SetUpBranchView(LoginRequiredMixin, CreateView):
         restaurant = self.request.user.user_profile.restaurant
         form.instance.restaurant = restaurant
 
-        response = super(SetUpBranchView, self).form_valid(form)
+        response = super().form_valid(form)
         return response

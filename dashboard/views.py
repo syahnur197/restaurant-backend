@@ -56,3 +56,7 @@ class BranchListView(MasterMixin, ListView):
         context = super(BranchListView, self).get_context_data(**kwargs)
         context['headers'] = get_branch_list_headers()
         return context
+
+class Setting(MasterMixin, TemplateView):
+    template_name = "dashboard/setting/setting.html"
+
