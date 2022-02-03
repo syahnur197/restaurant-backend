@@ -7,6 +7,7 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from dashboard.headers import get_branch_list_headers, get_product_list_headers
 from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
+from restaurant.forms import CreateProductForm
 from restaurant.models import Branch, Product
 from django_extensions.db.models import ActivatorModel
 from django.forms.utils import ErrorList
@@ -33,9 +34,8 @@ class ProductListView(MasterMixin, ListView):
 
 
 class ProductCreateView(MasterMixin, CreateView):
-    model = Product
+    form_class = CreateProductForm
     template_name = "dashboard/product/product-create.html"
-    fields = ('name', 'description', 'unit_price', 'status',)
     success_url = reverse_lazy('dashboard_product_list')
 
     def form_valid(self, form):

@@ -117,11 +117,15 @@ class UserProfile(TimeStampedModel, models.Model):
         self.restaurant = restaurant
         return self.save()
 
+def product_photo_directory_path(instance, filename):
+    return 'staticfiles/restaurants/restaurant_{0}/{1}'.format(instance.restaurant.id, filename)
+
 class Product(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
+    photo = models.FileField(upload_to=product_photo_directory_path, null=True, blank=True, default=True)
 
     def get_edit_link(self):
         # TODO: Change the url

@@ -10,11 +10,5 @@ Create Product
 {% endblock %}
 
 {% block content %}
-  <form method="post" class="flex flex-col space-y-4" novalidate>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="bg-blue-200 w-1/4 mx-auto py-4 rounded-md">
-      Add
-    </button>
-  </form>
+  {% crispy form form.helper %}
 {% endblock content %}
