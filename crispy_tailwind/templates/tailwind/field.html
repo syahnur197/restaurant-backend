@@ -13,9 +13,11 @@
     {% endif %}
 
     {# if field has a special template then use this #}
-    {% if field|is_select %}
+    {% if field|is_select_multiple %}
         <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
-
+        {% include 'tailwind/layout/selectmultiple.html' %}
+    {% elif field|is_select %}
+        <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>
         {% include 'tailwind/layout/select.html' %}
     {% elif field|is_radioselect %}
         <div class="{% if field_class %}{{ field_class }}{% else %}mb-3{% endif %}"{% if flat_attrs %} {{ flat_attrs|safe }}{% endif %}>

@@ -29,6 +29,7 @@ class SetUpBranchForm(ModelForm):
             'name',
             'address',
             'phone_number',
+            'restaurant',
         )
 
     def clean_country(self):
