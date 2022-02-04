@@ -14,4 +14,4 @@ urlpatterns = [
     path('accounts/', include('authentication.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('__reload__/', include('django_browser_reload.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

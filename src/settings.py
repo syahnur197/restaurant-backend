@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
+    'tailwind',
+    'django_browser_reload',
+
     'restaurant',
     'dashboard',
     'authentication',
@@ -52,9 +55,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'django_countries',
-    'tailwind',
-    'theme',
-    'django_browser_reload',
 
     'allauth',
     'allauth.account',
@@ -80,8 +80,10 @@ GRAPHENE = {
     "SCHEMA": "restaurant.schema.schema"
 }
 
-TAILWIND_APP_NAME = 'theme'
+TAILWIND_APP_NAME = 'dashboard'
 
+
+# Crispy Form and Crispy Tailwind Config
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
 CRISPY_TEMPLATE_PACK = "tailwind"
@@ -183,9 +185,12 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = BASE_DIR / 'resource/upload'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/var/www/static/',
+    BASE_DIR / "dashboard/static",
 ]
 
 

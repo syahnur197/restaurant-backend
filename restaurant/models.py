@@ -118,7 +118,7 @@ class UserProfile(TimeStampedModel, models.Model):
         return self.save()
 
 def product_photo_directory_path(instance, filename):
-    return 'staticfiles/restaurants/restaurant_{0}/{1}'.format(instance.restaurant.id, filename)
+    return 'restaurants/restaurant_{0}/{1}'.format(instance.restaurant.id, filename)
 
 class Product(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
