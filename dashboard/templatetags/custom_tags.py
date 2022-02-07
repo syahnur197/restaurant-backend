@@ -36,4 +36,11 @@ def render_javascript():
 
 @register.filter
 def get_item(dictionary, key):
-    return dictionary.__dict__.get(key)
+    returned_value = dictionary.__dict__.get(key)
+    if returned_value is None:
+        return ''
+    return returned_value
+
+@register.filter
+def call_method(record, func):
+    return getattr(record, func)()

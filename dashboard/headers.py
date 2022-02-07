@@ -13,7 +13,7 @@ def get_product_list_headers():
         {
             "key": "name",
             "label": "Product Name",
-            "link": "edit_link",
+            "link": ["get_edit_link"],
         },
         {
             "key": "unit_price",
@@ -31,9 +31,11 @@ def get_product_list_headers():
             "link": "",
         },
         {
-            "key": "edit",
+            "key": "links",
             "label": "",
-            "link": "edit_link",
+            "link": [
+                {"label" : "Edit", "action": "get_edit_link"},
+            ],
         },
     ]
 
@@ -47,7 +49,7 @@ def get_branch_list_headers():
         {
             "key": "name",
             "label": "Branch Name",
-            "link": "edit_link",
+            "link": ["get_edit_link"],
         },
         {
             "key": "phone_number",
@@ -60,8 +62,45 @@ def get_branch_list_headers():
             "link": "",
         },
         {
-            "key": "edit",
+            "key": "links",
             "label": "",
-            "link": "edit_link",
+            "link": [
+                {"label" : "Edit", "action": "get_edit_link"},
+                {"label" : "Opening Times", "action": "get_opening_hours_link"},
+            ],
+        },
+    ]
+
+def get_opening_hours_list_headers():
+    return [
+        {
+            "key": "number",
+            "label": "Number",
+            "link": "",
+        },
+        {
+            "key": "days",
+            "label": "Days",
+            "link": "",
+        },
+        {
+            "key": "start_time",
+            "label": "Start Time",
+            "link": "",
+        },
+        {
+            "key": "end_time",
+            "label": "End Time",
+            "link": "",
+        },
+        {
+            "key": "break_start_time",
+            "label": "Break Start Time",
+            "link": "",
+        },
+        {
+            "key": "break_end_time",
+            "label": "Break End Time",
+            "link": "",
         },
     ]

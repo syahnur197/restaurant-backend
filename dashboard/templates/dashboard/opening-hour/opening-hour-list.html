@@ -1,0 +1,18 @@
+{% extends 'dashboard.base.html' %}
+{% load custom_tags %}
+
+{% block head_title %}
+Opening Hours
+{% endblock %}
+
+{% block header %}
+{{ branch.name }}'s Opening Hours
+{% endblock %}
+
+{% block content %}
+<div class="text-right">
+  <a href="{% url 'dashboard_opening_hour_create' pk=branch.id %}" class="bg-blue-200 py-4 px-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900">Add Opening Hours</a>
+</div>
+{% render_table headers records %}
+{% endblock content %}
+

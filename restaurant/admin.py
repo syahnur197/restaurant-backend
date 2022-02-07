@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from .models import User, Cuisine, Restaurant, Branch, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
+from .models import User, Cuisine, Restaurant, Branch, OpeningHour, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
 
 
 @admin.register(User)
@@ -41,6 +41,11 @@ class RestaurantAdmin(admin.ModelAdmin):
         'id',
         'created',
         'modified',
+        'status',
+        'activate_date',
+        'deactivate_date',
+        'approved_at',
+        'rejected_at',
         'name',
         'description',
         'phone_number',
@@ -52,7 +57,15 @@ class RestaurantAdmin(admin.ModelAdmin):
         'creator',
         'origin_country',
     )
-    list_filter = ('created', 'modified', 'creator')
+    list_filter = (
+        'created',
+        'modified',
+        'activate_date',
+        'deactivate_date',
+        'approved_at',
+        'rejected_at',
+        'creator',
+    )
     raw_id_fields = ('cuisines',)
     search_fields = ('name',)
 
@@ -74,6 +87,22 @@ class BranchAdmin(admin.ModelAdmin):
     )
     list_filter = ('created', 'modified', 'restaurant')
     search_fields = ('name',)
+
+
+@admin.register(OpeningHour)
+class OpeningHourAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'created',
+        'modified',
+        'branch',
+        'days',
+        'start_time',
+        'end_time',
+        'break_start_time',
+        'break_end_time',
+    )
+    list_filter = ('created', 'modified', 'branch')
 
 
 @admin.register(UserProfile)
@@ -103,6 +132,7 @@ class ProductAdmin(admin.ModelAdmin):
         'description',
         'restaurant',
         'unit_price',
+        'photo',
     )
     list_filter = (
         'created',

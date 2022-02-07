@@ -93,7 +93,10 @@ class Branch(TimeStampedModel, models.Model):
     def get_edit_link(self):
         return reverse_lazy('dashboard_branch_update', kwargs={'pk' : self.id})
 
-class OpeningHours(TimeStampedModel, models.Model):
+    def get_opening_hours_link(self):
+        return reverse_lazy('dashboard_opening_hour_list', kwargs={'pk' : self.id})
+
+class OpeningHour(TimeStampedModel, models.Model):
     class Meta:
         verbose_name_plural = "Opening Hours"
 

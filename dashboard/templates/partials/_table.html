@@ -31,21 +31,34 @@
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                         Inactive
                       </span>
+                    {% elif header.link == '' %}
+                      {{ record|get_item:header.key }}
                     {% else %}
-                      {% if header.link == 'edit_link' %}
-                        <a href="{{ record.get_edit_link }}" class="text-blue-600 hover:text-blue-900">
-                      {% endif %}
+                      {% comment %}
+                        Rendering the links, if header.keys == 'links' render the link.label, otherwise, render the attribute
+                        Loop the links, if the link action has the word link in it, render an anchor tag,
+                        Also, call the record method based on the link action.
+                        For example, if link.action is get_foo_link,
+                        Will call method record.get_foo_link, thus, record model has to have that method
+                      {% endcomment %}
+                      <div class="space-x-4">
+                        {% for link in header.link %}
+                          {% if 'link' in link.action %}
+                            {% comment %} Calling the link.action method {% endcomment %}
+                            <a href="{{ record|call_method:link.action }}" class="text-blue-600 hover:text-blue-900">
+                          {% endif %}
 
-                      {% if header.key == 'edit' %}
-                        Edit
-                      {% else %}
-                        {{ record|get_item:header.key }}
-                      {% endif %}
+                          {% if header.key == 'links' %}
+                            {{ link.label }}
+                          {% else %}
+                            {{ record|get_item:header.key }}
+                          {% endif %}
 
-                      {% if header.link == 'edit_link' %}
-                        </a>
-                      {% endif %}
-
+                          {% if 'link' in link.action %}
+                            </a>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
                     {% endif %}
                   </td>
                 {% endfor %}

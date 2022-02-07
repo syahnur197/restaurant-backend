@@ -1,6 +1,6 @@
 from django.forms import ModelForm, RadioSelect, Textarea
 
-from restaurant.models import Branch, Product
+from restaurant.models import Branch, OpeningHour, Product
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Field
 from crispy_forms.bootstrap import InlineRadios
@@ -25,7 +25,6 @@ class ProductForm(ModelForm):
             'photo',
             Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
         )
-
 
 
 class BranchForm(ModelForm):
@@ -57,4 +56,29 @@ class BranchForm(ModelForm):
             'address',
             'phone_number',
             'payment_instruction',
+        )
+
+class OpeningHourForm(ModelForm):
+    class Meta:
+        model = OpeningHour
+        fields = (
+            'days',
+            'start_time',
+            'end_time',
+            'break_start_time',
+            'break_end_time',
+        )
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'flex flex-col space-y-4'
+        self.helper.layout = Layout(
+            'days',
+            'start_time',
+            'end_time',
+            'break_start_time',
+            'break_end_time',
+            Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
         )
