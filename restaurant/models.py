@@ -82,7 +82,7 @@ class Branch(TimeStampedModel, models.Model):
     name = models.CharField(max_length=100)
     payment_instruction = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=20)
-    address = models.TextField()
+    address = models.CharField(max_length=100)
     country = CountryField(default="BN")
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
@@ -91,8 +91,18 @@ class Branch(TimeStampedModel, models.Model):
         return self.name
 
     def get_edit_link(self):
-        # TODO: Change the url
-        return reverse_lazy('dashboard_product_create')
+        return reverse_lazy('dashboard_branch_update', kwargs={'pk' : self.id})
+
+class OpeningHours(TimeStampedModel, models.Model):
+    class Meta:
+        verbose_name_plural = "Opening Hours"
+
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    days = models.CharField('Days', max_length=100)
+    start_time = models.TimeField('Opening Time')
+    end_time = models.TimeField('Closing Time')
+    break_start_time = models.TimeField('Break Time starts at', null=True, blank=True)
+    break_end_time = models.TimeField('Break Time ends at', null=True, blank=True)
 
 class UserProfile(TimeStampedModel, models.Model):
 
@@ -125,11 +135,10 @@ class Product(TimeStampedModel, ActivatorModel, models.Model):
     description = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
-    photo = models.FileField(upload_to=product_photo_directory_path, null=True, blank=True, default=True)
+    photo = models.ImageField(upload_to=product_photo_directory_path, null=True, blank=True)
 
     def get_edit_link(self):
-        # TODO: Change the url
-        return reverse_lazy('dashboard_product_create')
+        return reverse_lazy('dashboard_product_update', kwargs={'pk' : self.id})
 
 class Order(TimeStampedModel, models.Model):
 

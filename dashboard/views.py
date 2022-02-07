@@ -1,16 +1,12 @@
-from email.policy import default
-from django import forms
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from dashboard.headers import get_branch_list_headers, get_product_list_headers
 from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
-from restaurant.forms import CreateProductForm
+from restaurant.forms import BranchForm, ProductForm
 from restaurant.models import Branch, Product
-from django_extensions.db.models import ActivatorModel
-from django.forms.utils import ErrorList
 
 class MasterMixin(LoginRequiredMixin, HasRestaurantMixin, UserRestaurantHasBranchMixin):
     pass
@@ -32,9 +28,24 @@ class ProductListView(MasterMixin, ListView):
         context['headers'] = get_product_list_headers()
         return context
 
+class ProductUpdateView(MasterMixin, UpdateView):
+    form_class = ProductForm
+    template_name = "dashboard/product/product-update.html"
+    success_url = reverse_lazy('dashboard_product_list')
+    model = Product
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+
+        user_restaurant = request.user.get_user_restaurant()
+
+        if (user_restaurant != self.object.restaurant):
+            return redirect(reverse_lazy('dashboard_dashboard'))
+
+        return response
 
 class ProductCreateView(MasterMixin, CreateView):
-    form_class = CreateProductForm
+    form_class = ProductForm
     template_name = "dashboard/product/product-create.html"
     success_url = reverse_lazy('dashboard_product_list')
 
@@ -56,6 +67,12 @@ class BranchListView(MasterMixin, ListView):
         context = super(BranchListView, self).get_context_data(**kwargs)
         context['headers'] = get_branch_list_headers()
         return context
+
+class BranchUpdateView(MasterMixin, UpdateView):
+    form_class = BranchForm
+    template_name = "dashboard/branch/branch-update.html"
+    success_url = reverse_lazy('dashboard_branch_list')
+    queryset = Branch.objects
 
 class Setting(MasterMixin, TemplateView):
     template_name = "dashboard/setting/setting.html"

@@ -1,0 +1,21 @@
+{% extends 'dashboard.base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Update {{ branch.name }}
+{% endblock %}
+
+{% block header %}
+Update {{ branch.name }}
+{% endblock %}
+
+{% block content %}
+  <form method='post' class='flex flex-col space-y-4'>
+    {% crispy form form.helper %}
+    <input type="submit" value="Submit" class='cursor-pointer bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900' />
+  </form>
+{% endblock content %}
+
+
+{% block javascript %}
+{% endblock javascript %}

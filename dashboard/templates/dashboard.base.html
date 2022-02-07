@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     {% comment %} {% tailwind_preload_css %} {% endcomment %}
     {% tailwind_css %}
+    {% render_javascript %}
   </head>
 
   <body class="h-full">
@@ -34,5 +35,7 @@
         </div>
       </div>
     </div>
+
+    {% block javascript %}{% endblock %}
   </body>
 </html>

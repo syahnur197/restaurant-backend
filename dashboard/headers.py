@@ -6,9 +6,19 @@ def get_product_list_headers():
             "link": "",
         },
         {
+            "key" : "photo",
+            "label" : "Photo",
+            "link" : "",
+        },
+        {
             "key": "name",
             "label": "Product Name",
             "link": "edit_link",
+        },
+        {
+            "key": "unit_price",
+            "label": "Price (B$)",
+            "link": "",
         },
         {
             "key": "description",

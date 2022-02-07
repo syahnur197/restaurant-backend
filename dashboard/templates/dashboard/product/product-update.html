@@ -1,0 +1,14 @@
+{% extends 'dashboard.base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Update {{ product.name }}
+{% endblock %}
+
+{% block header %}
+Update {{ product.name }}
+{% endblock %}
+
+{% block content %}
+  {% crispy form form.helper %}
+{% endblock content %}

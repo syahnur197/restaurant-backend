@@ -1,6 +1,7 @@
 import datetime
 from django import template
 from django.urls import reverse_lazy
+from src import settings
 
 register = template.Library()
 
@@ -14,7 +15,7 @@ def show_sidebar():
         {'label': 'Dashboard', 'link' : reverse_lazy('dashboard_dashboard')},
         {'label': 'Branches', 'link' : reverse_lazy('dashboard_branch_list')},
         {'label': 'Products', 'link' : reverse_lazy('dashboard_product_list')},
-        {'label': 'Orders', 'link' : reverse_lazy('dashboard_dashboard')},
+        # {'label': 'Orders', 'link' : reverse_lazy('dashboard_dashboard')},
         {'label': 'Setting', 'link' : reverse_lazy('dashboard_dashboard')},
     ]
 
@@ -25,6 +26,12 @@ def render_table(headers, records):
     return {
         'headers' : headers,
         'records' : records,
+    }
+
+@register.inclusion_tag('partials/_javascript.html')
+def render_javascript():
+    return {
+        'petite_vue' : settings.PETITE_VUE_URL,
     }
 
 @register.filter

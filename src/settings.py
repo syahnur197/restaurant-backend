@@ -62,11 +62,12 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_tailwind',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -232,3 +233,5 @@ if os.name == 'nt':
 #     'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
 #     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
 # }
+
+PETITE_VUE_URL = 'https://unpkg.com/petite-vue'

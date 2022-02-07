@@ -21,6 +21,8 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                     {% if header.key == 'number' %}
                       {{ forloop.parentloop.counter }}
+                    {% elif header.key == 'photo' %}
+                      <a href="{{ record.photo.url }}" target="_blank" ><img src="{{ record.photo.url }}" class="h-20 w-20 rounded-lg" /></a>
                     {% elif header.key == 'status' and record|get_item:header.key == 1 %}
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         Active
