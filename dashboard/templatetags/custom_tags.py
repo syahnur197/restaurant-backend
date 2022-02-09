@@ -16,7 +16,7 @@ def show_sidebar():
         {'label': 'Branches', 'link' : reverse_lazy('dashboard_branch_list')},
         {'label': 'Products', 'link' : reverse_lazy('dashboard_product_list')},
         # {'label': 'Orders', 'link' : reverse_lazy('dashboard_dashboard')},
-        {'label': 'Setting', 'link' : reverse_lazy('dashboard_dashboard')},
+        {'label': 'Setting', 'link' : reverse_lazy('dashboard_setting')},
     ]
 
     return {'navs' : navs}

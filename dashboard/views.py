@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, FormView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from dashboard.headers import get_branch_list_headers, get_opening_hours_list_headers, get_product_list_headers
 from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
-from restaurant.forms import BranchForm, OpeningHourForm, ProductForm
-from restaurant.models import Branch, OpeningHour, Product
+from restaurant.forms import BranchForm, OpeningHourForm, ProductForm, RestaurantForm
+from restaurant.models import Branch, OpeningHour, Product, Restaurant
 
 class MasterMixin(LoginRequiredMixin, HasRestaurantMixin, UserRestaurantHasBranchMixin):
     pass
@@ -168,6 +168,17 @@ class OpeningHourUpdateView(MasterMixin, UpdateView):
 
         return super().form_valid(form)
 
-class Setting(MasterMixin, TemplateView):
-    template_name = "dashboard/setting/setting.html"
+class Setting(MasterMixin, FormView):
+    template_name = "dashboard/setting/restaurant-update.html"
+    form_class = RestaurantForm
+    success_url = reverse_lazy('dashboard_dashboard')
+
+
+    def get_form(self, form_class=form_class):
+        restaurant = self.request.user.get_user_restaurant()
+        return form_class(instance=restaurant, **self.get_form_kwargs())
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
