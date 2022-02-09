@@ -48,7 +48,7 @@
                         {% for link in header.link %}
                           {% if 'link' in link.action %}
                             {% comment %} Calling the link.action method {% endcomment %}
-                            <a href="{{ record|call_method:link.action }}" class="text-blue-600 hover:text-blue-900">
+                            <a href="{{ record|call_method:link.action }}" class="text-blue-600 hover:text-blue-900 underline">
                           {% endif %}
 
                           {% if header.key == 'links' %}
