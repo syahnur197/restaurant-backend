@@ -107,6 +107,9 @@ class OpeningHour(TimeStampedModel, models.Model):
     break_start_time = models.TimeField('Break Time starts at', null=True, blank=True)
     break_end_time = models.TimeField('Break Time ends at', null=True, blank=True)
 
+    def get_edit_link(self):
+        return reverse_lazy('dashboard_opening_hour_update', kwargs={'pk' : self.branch.id, 'opening_hour_id' : self.id})
+
 class UserProfile(TimeStampedModel, models.Model):
 
     class Role(models.TextChoices):

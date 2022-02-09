@@ -103,4 +103,11 @@ def get_opening_hours_list_headers():
             "label": "Break End Time",
             "link": "",
         },
+        {
+            "key": "links",
+            "label": "",
+            "link": [
+                {"label" : "Edit", "action": "get_edit_link"},
+            ],
+        },
     ]

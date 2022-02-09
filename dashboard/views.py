@@ -102,6 +102,52 @@ class OpeningHourCreateView(MasterMixin, CreateView):
     form_class = OpeningHourForm
     template_name =  "dashboard/opening-hour/opening-hour-create.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['branch'] = Branch.objects.filter(id=self.kwargs['pk']).first()
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_opening_hour_list', kwargs={'pk':self.kwargs['pk']})
+
+    def form_valid(self, form):
+        branch = Branch.objects.filter(id=self.kwargs['pk']).first()
+
+        user_restaurant = self.request.user.get_user_restaurant()
+
+        if (branch is None):
+            return redirect(reverse_lazy('dashboard_branch_list'))
+
+        user_owns_branch = user_restaurant == branch.restaurant
+
+        if (not user_owns_branch):
+            return redirect(reverse_lazy('dashboard_branch_list'))
+
+        form.instance.branch = branch
+
+        return super().form_valid(form)
+
+class OpeningHourUpdateView(MasterMixin, UpdateView):
+    form_class = OpeningHourForm
+    template_name =  "dashboard/opening-hour/opening-hour-update.html"
+    model = OpeningHour
+    pk_url_kwarg = 'opening_hour_id'
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+
+        user_restaurant = request.user.get_user_restaurant()
+
+        if (user_restaurant != self.object.branch.restaurant):
+            return redirect(reverse_lazy('dashboard_dashboard'))
+
+        return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['branch'] = Branch.objects.filter(id=self.kwargs['pk']).first()
+        return context
+
     def get_success_url(self):
         return reverse_lazy('dashboard_opening_hour_list', kwargs={'pk':self.kwargs['pk']})
 

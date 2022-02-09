@@ -10,4 +10,5 @@ urlpatterns = [
     path('branches/<pk>/', views.BranchUpdateView.as_view(), name='dashboard_branch_update'),
     path('branches/<pk>/opening-hours/create', views.OpeningHourCreateView.as_view(), name='dashboard_opening_hour_create'),
     path('branches/<pk>/opening-hours/', views.OpeningHourListView.as_view(), name='dashboard_opening_hour_list'),
+    path('branches/<pk>/opening-hours/<opening_hour_id>', views.OpeningHourUpdateView.as_view(), name='dashboard_opening_hour_update'),
 ]

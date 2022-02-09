@@ -1,4 +1,4 @@
-from django.forms import ModelForm, RadioSelect, Textarea
+from django.forms import ModelForm, RadioSelect, TextInput, Textarea, TimeField, TimeInput
 
 from restaurant.models import Branch, OpeningHour, Product
 from crispy_forms.helper import FormHelper
@@ -69,6 +69,14 @@ class OpeningHourForm(ModelForm):
             'break_end_time',
         )
 
+        widgets = {
+            'days' : TextInput(attrs={'value' : 'Monday-Thursday'}),
+            'start_time': TimeInput(attrs={'type': 'time', 'value': '10:00'}),
+            'end_time': TimeInput(attrs={'type': 'time', 'value': '22:00'}),
+            'break_start_time': TimeInput(attrs={'type': 'time'}),
+            'break_end_time': TimeInput(attrs={'type': 'time'}),
+        }
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -80,5 +88,5 @@ class OpeningHourForm(ModelForm):
             'end_time',
             'break_start_time',
             'break_end_time',
-            Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
+            Submit('submit', 'Submit', css_class='cursor-pointer bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
         )
