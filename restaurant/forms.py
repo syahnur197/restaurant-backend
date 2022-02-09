@@ -1,7 +1,7 @@
-from django.forms import ModelForm, RadioSelect, TextInput, Textarea, TimeInput
+from django.forms import CheckboxSelectMultiple, ModelForm, RadioSelect, TextInput, Textarea, TimeInput
 from restaurant.models import Branch, OpeningHour, Product, Restaurant
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit
+from crispy_forms.layout import Layout, Div, Submit, HTML
 
 
 class RestaurantForm(ModelForm):
@@ -11,38 +11,56 @@ class RestaurantForm(ModelForm):
             'name',
             'description',
             'phone_number',
-            'cuisines',
+            'cuisine_types',
+            'meal_types',
+            'dining_types',
             'facebook',
             'instagram',
             'twitter',
             'website',
             'email',
-            'origin_country',
+            # 'origin_country',
         )
+        widgets = {
+            'description': Textarea(attrs={'rows': 5}),
+
+            'cuisine_types': CheckboxSelectMultiple(),
+            'meal_types': CheckboxSelectMultiple(),
+            'dining_types': CheckboxSelectMultiple(),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_class = 'flex flex-col space-y-4'
-        self.helper.form_tag = False
         self.helper.layout = Layout(
             'name',
             'description',
-            'cuisines',
-            Div(
-            'facebook',
-            'instagram',
-            'twitter',
-            'website',
-            css_class='grid grid-cols-4 gap-2'
-            ),
             Div(
             'email',
             'phone_number',
-            css_class='grid grid-cols-2 gap-2'
+            css_class='grid grid-cols-2 gap-2',
             ),
-            'origin_country',
-            Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
+            # 'origin_country',
+            HTML('<h3 class="mt-8 mb-2 text-lg font-bold text-gray-700">Social Media Links</h3>'),
+            Div(
+                'facebook',
+                'instagram',
+                'twitter',
+                'website',
+                css_class='grid grid-cols-4 gap-2'
+            ),
+            HTML('<h3 class="mt-8 text-lg font-bold text-gray-700">Types</h3>'),
+            HTML('<p class="text-gray-700 mb-2">Please select your food types</p>'),
+            Div(
+                'cuisine_types',
+                'meal_types',
+                'dining_types',
+                css_class='grid grid-cols-3 gap-2',
+            ),
+            Div(
+                Submit('submit', 'Submit', css_class='cursor-pointer bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900'),
+            ),
         )
 
 class BranchForm(ModelForm):
@@ -79,9 +97,10 @@ class BranchForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'description', 'unit_price', 'status', 'photo',)
+        fields = ('name', 'description', 'unit_price', 'discount_price', 'status', 'photo',)
         widgets = {
             'status': RadioSelect(),
+            'description': Textarea(attrs={'rows': 3}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -91,7 +110,11 @@ class ProductForm(ModelForm):
         self.helper.layout = Layout(
             'name',
             'description',
-            'unit_price',
+            Div(
+                'unit_price',
+                'discount_price',
+                css_class='grid grid-cols-2 gap-2'
+            ),
             'status',
             'photo',
             Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')

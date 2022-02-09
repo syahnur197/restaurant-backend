@@ -7,13 +7,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    {% tailwind_preload_css %}
+    {% comment %} {% tailwind_preload_css %} {% endcomment %}
     {% tailwind_css %}
+    {% render_javascript %}
   </head>
 
   <body class="h-full">
     <div class="flex h-screen">
-      <div class="w-1/2 m-auto">
+      <div class="w-1/2 m-auto py-8">
         {% block content %}
         {% endblock %}
       </div>

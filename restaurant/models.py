@@ -50,7 +50,21 @@ class User(AbstractUser):
         return self.get_user_profile().branch
 
 
-class Cuisine(TitleSlugDescriptionModel):
+class CuisineType(TitleSlugDescriptionModel):
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+class MealType(TitleSlugDescriptionModel):
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+class DiningType(TitleSlugDescriptionModel):
     class Meta:
         ordering = ['title']
 
@@ -61,7 +75,9 @@ class Restaurant(TimeStampedModel, ActivatorModel, ApprovableModel, models.Model
     name = models.CharField(max_length=100)
     description = models.TextField()
     phone_number = models.CharField(max_length=20)
-    cuisines = models.ManyToManyField(Cuisine)
+    cuisine_types = models.ManyToManyField(CuisineType)
+    dining_types = models.ManyToManyField(DiningType)
+    meal_types = models.ManyToManyField(MealType)
     facebook = models.CharField(max_length=50, blank=True, null=True)
     instagram = models.CharField(max_length=50, blank=True, null=True)
     twitter = models.CharField(max_length=50, blank=True, null=True)
@@ -141,6 +157,7 @@ class Product(TimeStampedModel, ActivatorModel, models.Model):
     description = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
+    discount_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     photo = models.ImageField(upload_to=product_photo_directory_path, null=True, blank=True)
 
     def get_edit_link(self):

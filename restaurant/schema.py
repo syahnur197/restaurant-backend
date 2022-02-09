@@ -1,7 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import Branch, Product, Restaurant, Cuisine, User, UserProfile
+from .models import Branch, Product, Restaurant, CuisineType, User, UserProfile
 
 
 class UserType(DjangoObjectType):
@@ -14,7 +14,7 @@ class UserProfileType(DjangoObjectType):
 
 class CuisineType(DjangoObjectType):
     class Meta:
-        model = Cuisine
+        model = CuisineType
 
 class RestaurantType(DjangoObjectType):
     class Meta:
@@ -29,25 +29,25 @@ class ProductType(DjangoObjectType):
         model = Product
 
 class Query(graphene.ObjectType):
-    all_cuisines = graphene.List(CuisineType)
+    all_cuisine_types = graphene.List(CuisineType)
     all_restaurants = graphene.List(RestaurantType)
     all_branchess = graphene.List(BranchType)
     all_products = graphene.List(ProductType)
 
     user = graphene.Field(UserType, id=graphene.ID())
     user_profile = graphene.Field(UserProfileType, id=graphene.ID())
-    cuisine = graphene.Field(CuisineType, id=graphene.ID())
+    cuisine_type = graphene.Field(CuisineType, id=graphene.ID())
     restaurant = graphene.Field(RestaurantType, id=graphene.ID())
     branch = graphene.Field(BranchType, id=graphene.ID())
     product = graphene.Field(ProductType, id=graphene.ID())
 
 
-    def resolve_all_cuisines(root, info):
-        return Cuisine.objects.all()
+    def resolve_all_cuisine_types(root, info):
+        return CuisineType.objects.all()
 
     def resolve_all_restaurants(root, info):
         return Restaurant.objects.all()
-   
+
     def resolve_all_branches(root, info):
         return Branch.objects.all()
 
@@ -55,7 +55,7 @@ class Query(graphene.ObjectType):
         return Product.objects.all()
 
 
-    
+
     def resolve_user(root, info, id):
         return User.objects.select_related('userprofile', 'userprofile__restaurant').get(pk=id)
     def resolve_restaurant(root, info, id):
@@ -64,5 +64,5 @@ class Query(graphene.ObjectType):
         return Branch.objects.get(pk=id)
     def resolve_product(root, info, id):
         return Product.objects.get(pk=id)
-    
+
 schema = graphene.Schema(query=Query)

@@ -1,0 +1,273 @@
+[{
+  "model": "restaurant.cuisinetype",
+  "pk": 1,
+  "fields": {
+    "title": "Fast Food",
+    "description": "",
+    "slug": "fast-food"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 2,
+  "fields": {
+    "title": "Italian",
+    "description": "",
+    "slug": "italian"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 3,
+  "fields": {
+    "title": "Malay",
+    "description": "",
+    "slug": "malay"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 4,
+  "fields": {
+    "title": "Indonesian",
+    "description": "",
+    "slug": "indonesian"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 5,
+  "fields": {
+    "title": "Arab",
+    "description": "",
+    "slug": "arab"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 6,
+  "fields": {
+    "title": "Indian",
+    "description": "",
+    "slug": "indian"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 7,
+  "fields": {
+    "title": "Chinese",
+    "description": "",
+    "slug": "chinese"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 8,
+  "fields": {
+    "title": "Korean",
+    "description": "",
+    "slug": "korean"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 9,
+  "fields": {
+    "title": "Japanese",
+    "description": "",
+    "slug": "japanese"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 10,
+  "fields": {
+    "title": "Hot Pot",
+    "description": "",
+    "slug": "hot-pot"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 11,
+  "fields": {
+    "title": "Thai",
+    "description": "",
+    "slug": "thai"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 12,
+  "fields": {
+    "title": "French",
+    "description": "",
+    "slug": "french"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 13,
+  "fields": {
+    "title": "Greek",
+    "description": "",
+    "slug": "greek"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 14,
+  "fields": {
+    "title": "American",
+    "description": "",
+    "slug": "american"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 15,
+  "fields": {
+    "title": "Breakfast",
+    "description": "",
+    "slug": "breakfast"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 16,
+  "fields": {
+    "title": "Fine Dining",
+    "description": "",
+    "slug": "fine-dining"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 17,
+  "fields": {
+    "title": "Lebanese",
+    "description": "",
+    "slug": "lebanese"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 18,
+  "fields": {
+    "title": "Mediterranean",
+    "description": "",
+    "slug": "mediterranean"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 19,
+  "fields": {
+    "title": "Spanish",
+    "description": "",
+    "slug": "spanish"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 20,
+  "fields": {
+    "title": "Turkish",
+    "description": "",
+    "slug": "turkish"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 21,
+  "fields": {
+    "title": "Muslim",
+    "description": "",
+    "slug": "muslim"
+  }
+}, {
+  "model": "restaurant.cuisinetype",
+  "pk": 22,
+  "fields": {
+    "title": "International",
+    "description": "",
+    "slug": "international"
+  }
+}, {
+  "model": "restaurant.diningtype",
+  "pk": 1,
+  "fields": {
+    "title": "Family",
+    "description": "",
+    "slug": "family"
+  }
+}, {
+  "model": "restaurant.diningtype",
+  "pk": 2,
+  "fields": {
+    "title": "Dessert",
+    "description": "",
+    "slug": "dessert"
+  }
+}, {
+  "model": "restaurant.diningtype",
+  "pk": 3,
+  "fields": {
+    "title": "Casual",
+    "description": "",
+    "slug": "casual"
+  }
+}, {
+  "model": "restaurant.diningtype",
+  "pk": 4,
+  "fields": {
+    "title": "Café",
+    "description": "",
+    "slug": "cafe"
+  }
+}, {
+  "model": "restaurant.diningtype",
+  "pk": 5,
+  "fields": {
+    "title": "Beverages",
+    "description": "",
+    "slug": "beverages"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 1,
+  "fields": {
+    "title": "Breakfast",
+    "description": "",
+    "slug": "breakfast"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 2,
+  "fields": {
+    "title": "Brunch",
+    "description": "",
+    "slug": "brunch"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 3,
+  "fields": {
+    "title": "Lunch",
+    "description": "",
+    "slug": "lunch"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 4,
+  "fields": {
+    "title": "Dinner",
+    "description": "",
+    "slug": "dinner"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 5,
+  "fields": {
+    "title": "Grab 'n' Go",
+    "description": "",
+    "slug": "grab-n-go"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 6,
+  "fields": {
+    "title": "High Tea",
+    "description": "",
+    "slug": "high-tea"
+  }
+}, {
+  "model": "restaurant.mealtype",
+  "pk": 7,
+  "fields": {
+    "title": "Supper",
+    "description": "",
+    "slug": "supper"
+  }
+}]

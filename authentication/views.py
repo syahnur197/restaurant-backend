@@ -19,11 +19,6 @@ class SetUpRestaurantView(LoginRequiredMixin, CreateView):
 
         return super().get(request, *args, **kwargs)
 
-    def get_form(self, form_class=None):
-        form = super(SetUpRestaurantView, self).get_form(form_class)
-        form.fields['cuisines'].widget = forms.SelectMultiple()
-        return form
-
     def form_valid(self, form):
         form.instance.creator = self.request.user
 

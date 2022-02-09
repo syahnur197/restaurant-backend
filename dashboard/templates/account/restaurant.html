@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
-{% load i18n %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 
 {% block content %}
-  <h1 class="text-2xl font-semibold text-gray-900">{% trans "Set Up Restaurant" %}</h1>
+<h1 class="text-2xl font-semibold text-gray-900">{% trans "Set Up Restaurant" %}</h1>
 
-  <p>
-    {% blocktrans %}
-      Please fill in the information below to set up your first resturant!
-    {% endblocktrans %}
-  </p>
+<p>
+  {% blocktrans %}
+    Please fill in the information below to set up your first resturant!
+  {% endblocktrans %}
+</p>
 
-
-  <form method="post">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <div class="py-2">
-      <button class="rounded-lg bg-blue-200 text-blue-800 hover:bg-blue-400 hover:text-blue-900 py-2 px-4" type="submit">{% trans "Save" %}</button>
-    </div>
-  </form>
+{% crispy form form.helper %}
 {% endblock content %}

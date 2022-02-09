@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from .models import User, Cuisine, Restaurant, Branch, OpeningHour, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
+from .models import User, CuisineType, MealType, DiningType, Restaurant, Branch, OpeningHour, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
 
 
 @admin.register(User)
@@ -29,8 +29,20 @@ class UserAdmin(admin.ModelAdmin):
     raw_id_fields = ('groups', 'user_permissions')
 
 
-@admin.register(Cuisine)
-class CuisineAdmin(admin.ModelAdmin):
+@admin.register(CuisineType)
+class CuisineTypeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'description', 'slug')
+    search_fields = ('slug',)
+
+
+@admin.register(MealType)
+class MealTypeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'description', 'slug')
+    search_fields = ('slug',)
+
+
+@admin.register(DiningType)
+class DiningTypeAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'description', 'slug')
     search_fields = ('slug',)
 
@@ -66,7 +78,7 @@ class RestaurantAdmin(admin.ModelAdmin):
         'rejected_at',
         'creator',
     )
-    raw_id_fields = ('cuisines',)
+    raw_id_fields = ('cuisine_types', 'dining_types', 'meal_types')
     search_fields = ('name',)
 
 
@@ -132,6 +144,7 @@ class ProductAdmin(admin.ModelAdmin):
         'description',
         'restaurant',
         'unit_price',
+        'discount_price',
         'photo',
     )
     list_filter = (

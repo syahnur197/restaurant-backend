@@ -21,8 +21,8 @@ def get_product_list_headers():
             "link": "",
         },
         {
-            "key": "description",
-            "label": "Description",
+            "key": "discount_price",
+            "label": "Discount Price (B$)",
             "link": "",
         },
         {
