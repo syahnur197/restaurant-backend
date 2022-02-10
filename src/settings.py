@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'django_cleanup',
+
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -75,10 +77,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 GRAPHENE = {
-    "SCHEMA": "restaurant.schema.schema"
+    "SCHEMA": "restaurant.schema.schema",
+    'MIDDLEWARE': [
+        'graphene_django.debug.DjangoDebugMiddleware',
+    ]
 }
 
 TAILWIND_APP_NAME = 'dashboard'
