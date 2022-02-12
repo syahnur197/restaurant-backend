@@ -1,7 +1,22 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+from django.contrib.contenttypes.admin import GenericStackedInline
 
-from .models import User, CuisineType, MealType, DiningType, Restaurant, Branch, OpeningHour, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
+from .models import Image, User, CuisineType, MealType, DiningType, Restaurant, Branch, OpeningHour, UserProfile, Product, Order, OrderProduct, PaymentGateway, Payment
+
+class ImageInline(GenericStackedInline):
+    model = Image
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'created',
+        'modified',
+        'content_type',
+        'object_id',
+        'image',
+    )
+    list_filter = ('created', 'modified', 'content_type')
 
 
 @admin.register(User)
@@ -145,7 +160,6 @@ class ProductAdmin(admin.ModelAdmin):
         'restaurant',
         'unit_price',
         'discount_price',
-        'photo',
     )
     list_filter = (
         'created',
@@ -155,6 +169,9 @@ class ProductAdmin(admin.ModelAdmin):
         'restaurant',
     )
     search_fields = ('name',)
+    inlines = [
+        ImageInline,
+    ]
 
 
 @admin.register(Order)

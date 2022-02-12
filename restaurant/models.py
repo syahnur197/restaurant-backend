@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 
 from django_extensions.db.models import ActivatorModel, TimeStampedModel, TitleSlugDescriptionModel
 from django_countries.fields import CountryField
@@ -30,6 +32,21 @@ class ApprovableModel(models.Model):
 
     class Meta:
         abstract = True
+
+def get_upload_path(instance, filename):
+    content_object = instance.content_object
+    model = content_object.model.__class__._meta
+    name = model.verbose_name_plural.replace(' ', '_')
+    return f'restaurants/{name}/{content_object.id}/{filename}'
+class Image(TimeStampedModel, models.Model):
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    image = models.ImageField(upload_to=get_upload_path, null=True, blank=True)
+
+
+
 
 class User(AbstractUser):
 
@@ -149,8 +166,6 @@ class UserProfile(TimeStampedModel, models.Model):
         self.restaurant = restaurant
         return self.save()
 
-def product_photo_directory_path(instance, filename):
-    return 'restaurants/restaurant_{0}/{1}'.format(instance.restaurant.id, filename)
 
 class Product(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
@@ -158,7 +173,11 @@ class Product(TimeStampedModel, ActivatorModel, models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     discount_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
-    photo = models.ImageField(upload_to=product_photo_directory_path, null=True, blank=True)
+    images = GenericRelation(
+        Image,
+        content_type_field='content_type',
+        object_id_field='object_id',
+    )
 
     def get_edit_link(self):
         return reverse_lazy('dashboard_product_update', kwargs={'pk' : self.id})

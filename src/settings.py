@@ -230,14 +230,15 @@ EMAIL_PORT = 1025
 if os.name == 'nt':
     NPM_BIN_PATH = os.environ.get('NPM_BIN_PATH')
 
-# ACCOUNT_FORMS = {
-#     'login': 'allauth.account.forms.LoginForm',
-#     'add_email': 'allauth.account.forms.AddEmailForm',
-#     'change_password': 'allauth.account.forms.ChangePasswordForm',
-#     'set_password': 'allauth.account.forms.SetPasswordForm',
-#     'reset_password': 'allauth.account.forms.ResetPasswordForm',
-#     'reset_password_from_key': 'allauth.account.forms.ResetPasswordKeyForm',
-#     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
-# }
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 0,
+    'prefix': 'session',
+    'socket_timeout': 1,
+    'retry_on_timeout': False
+}
 
 PETITE_VUE_URL = 'https://unpkg.com/petite-vue'
