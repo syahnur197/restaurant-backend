@@ -160,6 +160,7 @@ class ProductAdmin(admin.ModelAdmin):
         'restaurant',
         'unit_price',
         'discount_price',
+        'image',
     )
     list_filter = (
         'created',
@@ -169,9 +170,9 @@ class ProductAdmin(admin.ModelAdmin):
         'restaurant',
     )
     search_fields = ('name',)
-    inlines = [
-        ImageInline,
-    ]
+    # inlines = [
+    #     ImageInline,
+    # ]
 
 
 @admin.register(Order)

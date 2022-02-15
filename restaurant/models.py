@@ -167,17 +167,25 @@ class UserProfile(TimeStampedModel, models.Model):
         return self.save()
 
 
+"""
+Place to upload images
+"""
+def product_photo_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/restaurant/<restaurant_id>/<filename>
+    return 'restaurants/restaurant/{0}/{1}'.format(instance.restaurant.id, filename)
+
 class Product(TimeStampedModel, ActivatorModel, models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     discount_price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
-    images = GenericRelation(
-        Image,
-        content_type_field='content_type',
-        object_id_field='object_id',
-    )
+    image = models.ImageField(upload_to=product_photo_directory_path, null=True, blank=True)
+    # images = GenericRelation(
+    #     Image,
+    #     content_type_field='content_type',
+    #     object_id_field='object_id',
+    # )
 
     def get_edit_link(self):
         return reverse_lazy('dashboard_product_update', kwargs={'pk' : self.id})

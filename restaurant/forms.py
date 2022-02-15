@@ -97,7 +97,7 @@ class BranchForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'description', 'unit_price', 'discount_price', 'status',)
+        fields = ('name', 'description', 'unit_price', 'discount_price', 'status', 'image',)
         widgets = {
             'status': RadioSelect(),
             'description': Textarea(attrs={'rows': 3}),
@@ -116,7 +116,8 @@ class ProductForm(ModelForm):
                 css_class='grid grid-cols-2 gap-2'
             ),
             'status',
-            Submit('submit', 'Submit', css_class='bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
+            'image',
+            Submit('submit', 'Submit', css_class='cursor-pointer bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900')
         )
 
 

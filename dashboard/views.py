@@ -171,7 +171,7 @@ class OpeningHourUpdateView(MasterMixin, UpdateView):
 class Setting(MasterMixin, FormView):
     template_name = "dashboard/setting/restaurant-update.html"
     form_class = RestaurantForm
-    success_url = reverse_lazy('dashboard_dashboard')
+    success_url = reverse_lazy('dashboard_setting')
 
 
     def get_form(self, form_class=form_class):
