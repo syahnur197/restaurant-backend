@@ -1,4 +1,4 @@
-{% load static tailwind_tags %}
+{% load bootstrap4 %}
 {% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en" class="h-full">
@@ -7,8 +7,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    {% comment %} {% tailwind_preload_css %} {% endcomment %}
-    {% tailwind_css %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='slim' %}
     {% render_javascript %}
   </head>
 

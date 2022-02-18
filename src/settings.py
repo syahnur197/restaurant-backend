@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-    'tailwind',
-    'django_browser_reload',
-
     'restaurant',
     'dashboard',
     'authentication',
@@ -61,8 +58,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'crispy_forms',
-    'crispy_tailwind',
     'django_cleanup',
+
+    'bootstrap4',
 
     'debug_toolbar',
 ]
@@ -87,13 +85,10 @@ GRAPHENE = {
     ]
 }
 
-TAILWIND_APP_NAME = 'dashboard'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
-# Crispy Form and Crispy Tailwind Config
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
