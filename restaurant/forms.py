@@ -1,7 +1,7 @@
-from django.forms import CheckboxSelectMultiple, ModelForm, RadioSelect, TextInput, Textarea, TimeInput
+from django.forms import CheckboxSelectMultiple, ModelForm, RadioSelect, SelectMultiple, TextInput, Textarea, TimeInput, SelectMultiple
 from restaurant.models import Branch, OpeningHour, Product, Restaurant
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML
+from crispy_forms.layout import Layout, Div, Submit, HTML, Field, Column, Row
 
 
 class RestaurantForm(ModelForm):
@@ -19,14 +19,14 @@ class RestaurantForm(ModelForm):
             'twitter',
             'website',
             'email',
-            # 'origin_country',
+            'origin_country',
         )
         widgets = {
-            'description': Textarea(attrs={'rows': 5}),
+            'description': Textarea(attrs={'rows': 3}),
 
-            'cuisine_types': CheckboxSelectMultiple(),
-            'meal_types': CheckboxSelectMultiple(),
-            'dining_types': CheckboxSelectMultiple(),
+            'cuisine_types': SelectMultiple(),
+            'meal_types': SelectMultiple(),
+            'dining_types': SelectMultiple(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -34,32 +34,33 @@ class RestaurantForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_class = 'flex flex-col space-y-4'
         self.helper.layout = Layout(
-            'name',
-            'description',
-            Div(
-            'email',
-            'phone_number',
-            css_class='grid grid-cols-2 gap-2',
+            Field('name'),
+            Field('description'),
+            Row(
+                Column(
+                    'email',
+                ),
+                Column(
+                    'phone_number',
+                ),
             ),
-            # 'origin_country',
+            'origin_country',
             HTML('<h3 class="mt-8 mb-2 text-lg font-bold text-gray-700">Social Media Links</h3>'),
-            Div(
-                'facebook',
-                'instagram',
-                'twitter',
-                'website',
-                css_class='grid grid-cols-4 gap-2'
+            Row(
+                Column('facebook'),
+                Column('instagram'),
+                Column('twitter'),
+                Column('website'),
             ),
             HTML('<h3 class="mt-8 text-lg font-bold text-gray-700">Types</h3>'),
             HTML('<p class="text-gray-700 mb-2">Please select your food types</p>'),
-            Div(
-                'cuisine_types',
-                'meal_types',
-                'dining_types',
-                css_class='grid grid-cols-3 gap-2',
+            Row(
+                Column('cuisine_types'),
+                Column('meal_types'),
+                Column('dining_types'),
             ),
             Div(
-                Submit('submit', 'Submit', css_class='cursor-pointer bg-blue-200 w-1/4 py-4 rounded-md text-blue-800 hover:bg-blue-400 hover:text-blue-900'),
+                Submit('submit', 'Submit', css_class='px-4'),
             ),
         )
 
