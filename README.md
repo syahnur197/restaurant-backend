@@ -22,10 +22,8 @@ A Backend for restaurant management which served using GraphQL built using Djang
 3. Update he DB credential in `.env`
 4. Run `pip install -r requirements.txt` to install the dependencies. It is recommended to use virtualenv.
 5. Run `python manage.py migrate` to migrate the db
-6. Run `python manage.py loaddata seeds/types.json`
-7. Run `python manage.py loaddata seeds/packages.json`
-8. Run `python manage.py loaddata seeds/data.json`
-9. Run `python manage.py runserver` to start the development server at `http://127.0.0.1:8000`
+6. Run `python manage.py loaddata seeds/types.json seeds/packages.json seeds/data.json`
+7. Run `python manage.py runserver` to start the development server at `http://127.0.0.1:8000`
 
 ## Contributing
 
