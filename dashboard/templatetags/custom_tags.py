@@ -9,17 +9,29 @@ register = template.Library()
 def current_time(format_string):
     return datetime.datetime.now().strftime(format_string)
 
-@register.inclusion_tag('partials/_sidebar.html')
-def show_sidebar():
+@register.inclusion_tag('partials/_sidebar.html', takes_context=True)
+def show_sidebar(context):
     navs = [
-        {'label': 'Dashboard', 'link' : reverse_lazy('dashboard_dashboard')},
-        {'label': 'Branches', 'link' : reverse_lazy('dashboard_branch_list')},
-        {'label': 'Products', 'link' : reverse_lazy('dashboard_product_list')},
+        {'label': 'Dashboard', 'link' : reverse_lazy('dashboard_dashboard'), 'icon' : 'fas fa-tachometer-alt'},
+        {'label': 'Branches', 'link' : reverse_lazy('dashboard_branch_list'), 'icon' : 'fas fa-building'},
+        {'label': 'Products', 'link' : reverse_lazy('dashboard_product_list'), 'icon' : 'fas fa-utensils'},
         # {'label': 'Orders', 'link' : reverse_lazy('dashboard_dashboard')},
-        {'label': 'Setting', 'link' : reverse_lazy('dashboard_setting')},
+        {'label': 'Setting', 'link' : reverse_lazy('dashboard_setting'), 'icon' : 'fas fa-cogs'},
     ]
 
-    return {'navs' : navs}
+    context['navs'] = navs
+
+    return context
+
+@register.inclusion_tag('partials/_breadcrumb.html')
+def show_breadcrumb(links = []):
+
+    if links == []:
+        return {'links': [
+            {'link' : reverse_lazy('dashboard_dashboard'), 'label' : 'Dashboard'},
+        ]}
+
+    return {'links' : links}
 
 @register.inclusion_tag('partials/_table.html')
 def render_table(headers, records):

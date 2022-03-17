@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, FormView
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from dashboard.breadcrumbs import get_branch_list_breadcrumbs, get_dashboard_breadcrumbs, get_product_list_breadcrumbs
 from dashboard.headers import get_branch_list_headers, get_opening_hours_list_headers, get_product_list_headers
 from dashboard.mixins import HasRestaurantMixin, UserRestaurantHasBranchMixin
 from restaurant.forms import BranchForm, OpeningHourForm, ProductForm, RestaurantForm
@@ -15,6 +16,11 @@ class MasterMixin(LoginRequiredMixin, HasRestaurantMixin, UserRestaurantHasBranc
 class DashboardView(MasterMixin, TemplateView):
     template_name = 'dashboard/dashboard/index.html'
 
+    def get_context_data(self,**kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        context['links'] = get_dashboard_breadcrumbs()
+        return context
+
 class ProductListView(MasterMixin, ListView):
     template_name = "dashboard/product/product-list.html"
     context_object_name = "records"
@@ -26,6 +32,7 @@ class ProductListView(MasterMixin, ListView):
     def get_context_data(self,**kwargs):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['headers'] = get_product_list_headers()
+        context['links'] = get_product_list_breadcrumbs()
         return context
 
 class ProductUpdateView(MasterMixin, UpdateView):
@@ -66,6 +73,7 @@ class BranchListView(MasterMixin, ListView):
     def get_context_data(self,**kwargs):
         context = super(BranchListView, self).get_context_data(**kwargs)
         context['headers'] = get_branch_list_headers()
+        context['links'] = get_branch_list_breadcrumbs()
         return context
 
 class BranchUpdateView(MasterMixin, UpdateView):
